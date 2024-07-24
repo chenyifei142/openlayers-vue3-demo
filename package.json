@@ -1,0 +1,21 @@
+{
+  "name": "openlayers-vue3-demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/node": "^20.14.11",
+    "ol": "^9.2.4",
+    "ol-ext": "^4.0.21",
+    "vue": "^3.4.31"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "vite": "^5.3.4"
+  }
+}
