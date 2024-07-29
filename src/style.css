@@ -75,3 +75,6 @@ body {
 .clearfix {
     *zoom: 1
 }
+body{
+    background-color: rgba(4, 20, 36, 1)
+}

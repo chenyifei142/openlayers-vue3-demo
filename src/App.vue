@@ -4,9 +4,13 @@ import MapContainer from "./view/map/MapContainer.vue";
 </script>
 
 <template>
-  <MapContainer></MapContainer>
+  <div class="main-box">
+    <MapContainer></MapContainer>
+  </div>
 </template>
 
-<style scoped>
-
+<style>
+.main-box {
+  background: rgba(3, 205, 255, 0.12);
+}
 </style>

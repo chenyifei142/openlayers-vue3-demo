@@ -9,6 +9,9 @@ import Overview from 'ol-ext/control/Overview';
 import {Fill, Stroke, Style} from "ol/style";
 import CircleStyle from "ol/style/Circle";
 import ShangHaiGeoJson from '@/assets/json/ShangHai.js'
+import ChangJiangDeltaGeoJson from "@/assets/json/ChangjiangDelta.js";
+import stylesMap from "@/view/map/compoents/style/stylesMap.js";
+import olUtils from "@/utils/olUtils.js";
 
 const map = inject('map')
 const createBaseTile = () => {
@@ -23,22 +26,24 @@ const createBaseTile = () => {
 
 
 const createOverviewMapControl = () => {
-  //鹰眼的底图图层
-  const base_layer = createBaseTile();
-
   //VectorLayer矢量图层
   //长三角图层
   const csj_layerVector = new VectorLayer({
     source: new VectorSource({features: []}), // 来源
+    style: stylesMap.csjStyle,
     zIndex: 716,
   });
-  map.value.addLayer(csj_layerVector)
+  olUtils.addFeaturesByUrl(csj_layerVector, ChangJiangDeltaGeoJson)
 
-  getMapData_ZXCQJJQ(csj_layerVector)
-  console.log(csj_layerVector, "ssssssssss")
-  // 添加图层
-  const layersOVMap = [base_layer, csj_layerVector];
+  //上海图层
+  const sq_layerVector = new VectorLayer({
+    source: new VectorSource({features: []}),
+    style: stylesMap.shStyle,
+    zIndex: 807,
+  });
+  olUtils.addFeaturesByUrl(sq_layerVector, ShangHaiGeoJson)
 
+  const layersOVMap = [csj_layerVector, sq_layerVector];
   const ov = new Overview({
     layers: layersOVMap,
     projection: "EPSG:3857",
@@ -68,26 +73,6 @@ const createOverviewMapControl = () => {
   });
   map.value.addControl(ov)
 }
-//中心城区级郊区图层【全市】【联动图层】
-const getMapData_ZXCQJJQ = (vector) => {
-  console.log(ShangHaiGeoJson, "ShangHaiGeoJson")
-  for (let i = 0; i < ShangHaiGeoJson.features.length; i++) {
-    let featureArr = readFeatures(ShangHaiGeoJson.features[i]);
-    vector.getSource().addFeatures(featureArr);
-  }
-}
-/**
- * 读取geo json 数据
- * @returns {*}
- */
-const readFeatures = (geoJson) => {
-  return new GeoJSON().readFeatures(
-      geoJson, {
-        dataProjection: "EPSG:4326",
-        featureProjection: "EPSG:3857",
-      }
-  );
-}
 
 onMounted(async () => {
   await nextTick(() => {
@@ -100,6 +85,22 @@ onMounted(async () => {
 
 </template>
 
-<style scoped>
+<style>
+@import "@/assets/style/ol-ext.css";
 
+.ol-control.ol-overview {
+  background: rgba(0, 160, 219, 0.2);
+  bottom: 77px;
+  /* left: 10px; */
+  left: auto;
+  right: 10px;
+}
+
+.ol-control.ol-overview .panel {
+  background-color: transparent !important;
+}
+
+.ol-control button {
+  background-color: rgba(0, 60, 136, 0.5);
+}
 </style>
