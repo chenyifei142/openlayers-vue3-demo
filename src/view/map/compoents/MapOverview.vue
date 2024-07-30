@@ -1,49 +1,19 @@
 <script setup>
 import {inject, nextTick, onMounted} from "vue";
-import TileLayer from "ol/layer/Tile";
-import {XYZ} from "ol/source";
-import VectorLayer from "ol/layer/Vector";
-import VectorSource from "ol/source/Vector";
-import {GeoJSON} from "ol/format";
 import Overview from 'ol-ext/control/Overview';
 import {Fill, Stroke, Style} from "ol/style";
 import CircleStyle from "ol/style/Circle";
 import ShangHaiGeoJson from '@/assets/json/ShangHai.js'
 import ChangJiangDeltaGeoJson from "@/assets/json/ChangjiangDelta.js";
 import stylesMap from "@/view/map/compoents/style/stylesMap.js";
-import olUtils from "@/utils/olUtils.js";
+import {useCreateVectorLayer} from "@/utils/useMap.js";
 
 const map = inject('map')
-const createBaseTile = () => {
-  let mapUrl = 'http://wprd0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=6&x={x}&y={y}&z={z}';
-  return new TileLayer({
-    source: new XYZ({
-      url: mapUrl,
-      crossOrigin: "anonymous", // 加载图像的 crossOrigin 属性。
-    }),
-  });
-}
-
+const csj_layerVector = useCreateVectorLayer(ChangJiangDeltaGeoJson, stylesMap.csjStyle, 716)
+const sq_layerVector = useCreateVectorLayer(ShangHaiGeoJson, stylesMap.shStyle, 807)
 
 const createOverviewMapControl = () => {
-  //VectorLayer矢量图层
-  //长三角图层
-  const csj_layerVector = new VectorLayer({
-    source: new VectorSource({features: []}), // 来源
-    style: stylesMap.csjStyle,
-    zIndex: 716,
-  });
-  olUtils.addFeaturesByUrl(csj_layerVector, ChangJiangDeltaGeoJson)
-
-  //上海图层
-  const sq_layerVector = new VectorLayer({
-    source: new VectorSource({features: []}),
-    style: stylesMap.shStyle,
-    zIndex: 807,
-  });
-  olUtils.addFeaturesByUrl(sq_layerVector, ShangHaiGeoJson)
-
-  const layersOVMap = [csj_layerVector, sq_layerVector];
+  const layersOVMap = [csj_layerVector.value, sq_layerVector.value];
   const ov = new Overview({
     layers: layersOVMap,
     projection: "EPSG:3857",

@@ -2,10 +2,8 @@
 import "ol/ol.css";
 import Map from "ol/Map";
 import View from "ol/View";
-import {onMounted, provide, ref} from "vue";
+import {nextTick, onMounted, provide, ref} from "vue";
 import {fromLonLat} from "ol/proj";
-import VectorLayer from "ol/layer/Vector";
-import VectorSource from "ol/source/Vector";
 import * as olControl from 'ol/control';
 import * as olInteraction from 'ol/interaction';
 import mapConstants from '@/constants/map.constants.js';
@@ -16,12 +14,10 @@ import ChangJiangDeltaGeoJson from "@/assets/json/ChangjiangDelta.js";
 import olUtils from "@/utils/olUtils.js";
 import MapOverview from "@/view/map/compoents/MapOverview.vue";
 import {Fill, Stroke, Style} from "ol/style";
-
+import {useCreateMarkVectorLayer, useCreateVectorLayer} from "@/utils/useMap.js";
 
 // 创建 ref 对象来保存地图和图层的引用
 const map = ref(null);
-const csj_layerVector = ref(null);
-const sq_layerVector = ref(null);
 const visibleFeature = ref(null); // 用于存储当前显示的特性
 
 // 创建一个完全透明的样式，用于隐藏未选中的区县
@@ -34,91 +30,88 @@ const hiddenStyle = new Style({
   }),
 });
 
-// 节流函数，用于减少频繁触发的事件次数
-const throttle = (func, limit) => {
-  let inThrottle;
-  return function () {
-    const args = arguments;
-    const context = this;
-    if (!inThrottle) {
-      func.apply(context, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  }
-};
-
 // 计算上海图层在视窗中的可见性占比
 const calculateVisibility = () => {
   const view = map.value.getView();
+  // 获取当前主视图显示范围
+  /*
+  (minX, maxY)         (maxX, maxY)
+  (10, 40)             (30, 40)
+   +--------------------+
+   |                    |
+   |                    |
+   |                    |
+   +--------------------+
+  (minX, minY)         (maxX, minY)
+  (10, 20)             (30, 20)
+  extent 数组中的四个坐标（左、下、右、上）表示的是一个矩形区域的边界
+  左边界（minX）：矩形区域的最左侧的 x 坐标。
+  下边界（minY）：矩形区域的最下侧的 y 坐标。
+  右边界（maxX）：矩形区域的最右侧的 x 坐标。
+  上边界（maxY）：矩形区域的最上侧的 y 坐标。
+  */
   const extent = view.calculateExtent(map.value.getSize());
+  // 获取上海显示范围
   const shanghaiExtent = sq_layerVector.value.getSource().getExtent();
-
   // 计算视窗和上海图层的交集区域
   const intersection = [
-    Math.max(extent[0], shanghaiExtent[0]),
-    Math.max(extent[1], shanghaiExtent[1]),
-    Math.min(extent[2], shanghaiExtent[2]),
-    Math.min(extent[3], shanghaiExtent[3])
+    Math.max(extent[0], shanghaiExtent[0]), // 左边界的较大值
+    Math.max(extent[1], shanghaiExtent[1]), // 下边界的较大值
+    Math.min(extent[2], shanghaiExtent[2]), // 右边界的较小值
+    Math.min(extent[3], shanghaiExtent[3])  // 上边界的较小值
   ];
-
+  // 检查是否有交集
   if (intersection[2] < intersection[0] || intersection[3] < intersection[1]) {
     return 0; // 如果没有交集，返回 0
   }
-
   // 计算交集面积和视窗面积
   const intersectionArea = (intersection[2] - intersection[0]) * (intersection[3] - intersection[1]);
   const viewArea = (extent[2] - extent[0]) * (extent[3] - extent[1]);
-
-  return intersectionArea / viewArea; // 返回交集面积与视窗面积的比值
+  // 返回交集面积与视窗面积的比值
+  return intersectionArea / viewArea;
+};
+// 设置图层可见性
+const setLayerVisibility = (isVisible) => {
+  csj_layerVector.value.setVisible(isVisible); // 设置长三角图层的可见性
+};
+// 设置特性样式
+const setFeatureStyles = (style, hiddenStyle) => {
+  sq_layerVector.value.getSource().getFeatures().forEach((f) => {
+    f.setStyle(f === visibleFeature.value ? style : hiddenStyle); // 为特性设置样式
+  });
 };
 
 // 更新图层的可见性
-const updateLayerVisibility = throttle(() => {
+const updateLayerVisibility = olUtils.throttle(() => {
   const visibilityRatio = calculateVisibility(); // 计算可见性占比
   const zoomLevel = map.value.getView().getZoom(); // 获取当前缩放等级
-  if (visibilityRatio > 0.4 && zoomLevel >= 7) { // 如果可见性占比大于 0.4 且缩放等级大于等于 7
-    csj_layerVector.value.setVisible(false); // 隐藏长三角图层
-    if (visibleFeature.value !== null) { // 如果有选中的区县
-      sq_layerVector.value.getSource().getFeatures().forEach((f) => {
-        f.setStyle(f === visibleFeature.value ? stylesMap.shStyle : hiddenStyle); // 显示选中的区县，隐藏其他区县
-      });
+
+  if (visibilityRatio > 0.8 && zoomLevel >= 7) {
+    setLayerVisibility(false); // 隐藏长三角图层
+    if (visibleFeature.value !== null) {
+      setFeatureStyles(stylesMap.shStyle, hiddenStyle); // 显示选中的区县，隐藏其他区县
     }
   } else {
-    csj_layerVector.value.setVisible(true); // 显示长三角图层
-    if (visibleFeature.value !== null) { // 如果有选中的区县
-      sq_layerVector.value.getSource().getFeatures().forEach((f) => {
-        f.setStyle(f === visibleFeature.value ? stylesMap.shStyle : stylesMap.csjStyle); // 显示选中的区县，使用长三角样式显示其他区县
-      });
+    setLayerVisibility(true); // 显示长三角图层
+    if (visibleFeature.value !== null) {
+      setFeatureStyles(stylesMap.shStyle, stylesMap.csjStyle); // 显示选中的区县，使用长三角样式显示其他区县
     }
   }
 }, 200); // 200 毫秒的节流时间
-
-// 初始化矢量图层
-const initVectorLayer = (geoJson, style, zIndex) => {
-  const layer = new VectorLayer({
-    source: new VectorSource({features: []}),
-    style: style,
-    zIndex: zIndex,
-  });
-  olUtils.addFeaturesByUrl(layer, geoJson); // 通过 URL 添加特性
-  return layer;
-};
+// 创建矢量图层
+const csj_layerVector = useCreateVectorLayer(ChangJiangDeltaGeoJson, stylesMap.csjStyle, 716)
+const sq_layerVector = useCreateVectorLayer(ShangHaiGeoJson, stylesMap.shStyle, 807)
+const aaa = useCreateMarkVectorLayer(ShangHaiGeoJson, stylesMap.shStyle, 820)
 
 // 初始化地图
 const initMap = () => {
-  // 初始化长三角图层
-  csj_layerVector.value = initVectorLayer(ChangJiangDeltaGeoJson, stylesMap.csjStyle, 716);
-  // 初始化上海图层
-  sq_layerVector.value = initVectorLayer(ShangHaiGeoJson, stylesMap.shStyle, 807);
-
   // 创建地图对象
   map.value = new Map({
     layers: [csj_layerVector.value, sq_layerVector.value],
     view: new View({
       center: fromLonLat(mapConstants.CENTER), // 设置地图中心
       zoom: 9, // 初始缩放等级
-      projection: 'EPSG:3857', // 投影方式
+      projection: 'EPSG:3857', // 投影方式 默认为'EPSG：3857'；
       maxZoom: 18, // 最大缩放等级
       minZoom: 4, // 最小缩放等级
     }),
@@ -177,20 +170,23 @@ const initMap = () => {
     });
   });
 };
-
 // 将 map 对象提供给子组件
 provide('map', map);
 
 // 组件挂载时初始化地图
 onMounted(() => {
   initMap();
+  nextTick(() => {
+    map.value.addLayer(aaa.value)
+    console.log(map.value.getLayers(), "mmmmmm")
+  })
 });
 </script>
 
 <template>
   <div id="map" class="map">
-    <MapMousePosition/>
-    <MapOverview/>
+    <!--    <MapMousePosition/>-->
+    <!--    <MapOverview/>-->
   </div>
 </template>
 

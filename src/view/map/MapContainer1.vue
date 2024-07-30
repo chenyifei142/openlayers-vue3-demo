@@ -2,104 +2,195 @@
 import "ol/ol.css";
 import Map from "ol/Map";
 import View from "ol/View";
-import TileLayer from "ol/layer/Tile";
-import {ref, onMounted, provide} from "vue";
+import {onMounted, provide, ref} from "vue";
 import {fromLonLat} from "ol/proj";
-import XYZ from "ol/source/XYZ";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
-import GeoJSON from "ol/format/GeoJSON";
-import Style from "ol/style/Style";
-import Fill from "ol/style/Fill";
 import * as olControl from 'ol/control';
 import * as olInteraction from 'ol/interaction';
 import mapConstants from '@/constants/map.constants.js';
 import ShangHaiGeoJson from '@/assets/json/ShangHai.js';
 import MapMousePosition from "@/view/map/compoents/MapMousePosition.vue";
-import MapOverview from "@/view/map/compoents/MapOverview.vue";
 import stylesMap from "@/view/map/compoents/style/stylesMap.js";
-import {getVectorContext} from "ol/render";
-import {Stroke} from "ol/style";
+import ChangJiangDeltaGeoJson from "@/assets/json/ChangjiangDelta.js";
+import olUtils from "@/utils/olUtils.js";
+import MapOverview from "@/view/map/compoents/MapOverview.vue";
+import {Fill, Stroke, Style} from "ol/style";
 
+
+// 创建 ref 对象来保存地图和图层的引用
 const map = ref(null);
+const csj_layerVector = ref(null);
+const sq_layerVector = ref(null);
+const visibleFeature = ref(null); // 用于存储当前显示的特性
 
+// 创建一个完全透明的样式，用于隐藏未选中的区县
+const hiddenStyle = new Style({
+  fill: new Fill({
+    color: 'rgba(0, 0, 0, 0)', // 完全透明
+  }),
+  stroke: new Stroke({
+    color: 'rgba(0, 0, 0, 0)', // 完全透明
+  }),
+});
 
-const initMap = () => {
-// 裁剪需要的样式
-  const style = new Style({
-    fill: new Fill({
-      color: '' // 设置为多少无所谓，设置了就行
-    })
-  });
-
-  // const baseLayer = new TileLayer({
-  //   source: new XYZ({
-  //     url: 'http://wprd0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=6&x={x}&y={y}&z={z}',
-  //   }),
-  //   opacity:0
-  // })
-  // 解析 Shanghai GeoJSON
-  const formatGeoJSON = new GeoJSON({
-    featureProjection: "EPSG:3857"
-  });
-  const shanghaiFeatures = formatGeoJSON.readFeatures(ShangHaiGeoJson);
-  // const shanghaiGeometry = shanghaiFeatures[0].getGeometry();
-  // const shanghaiExtent = shanghaiGeometry.getExtent();
-  // 创建矢量源和图层
-  const vectorSource = new VectorSource({
-    features: shanghaiFeatures,
-  });
-  const hljBorderLayer = new VectorLayer({
-    source: vectorSource,
-    style: stylesMap.shStyle,
-  });
-
-  // hljBorderLayer.getSource().on('addfeature', () => {
-  //   baseLayer.setExtent(hljBorderLayer.getSource().getExtent());
-  // });
-  //
-  // // 地图渲染完成后触发
-  // baseLayer.on('postrender', (e) => {
-  //   const vectorContext = getVectorContext(e);
-  //   e.context.globalCompositeOperation = 'destination-in';
-  //   hljBorderLayer.getSource().forEachFeature(function (feature) {
-  //     vectorContext.drawFeature(feature, style);
-  //   });
-  //   e.context.globalCompositeOperation = 'source-over';
-  // });
-
-  map.value = new Map({
-    layers: [hljBorderLayer],
-    view: new View({
-      center: fromLonLat(mapConstants.CENTER), // 上海
-      zoom: 9, // 设置初始化时的地图缩放层级
-      projection: 'EPSG:3857', // 坐标系
-      maxZoom: 18, // 最大缩放层级
-      minZoom: 4, // 最小缩放层级
-    }),
-    target: 'map',
-    controls: olControl.defaults({
-      attribution: false,
-      rotate: false,
-      zoom: true,
-      zoomOptions: {
-        delta: 5,
-      },
-    }),
-    interactions: olInteraction.defaults({
-      doubleClickZoom: false,
-      pinchRotate: false,
-    }),
+// 计算上海图层在视窗中的可见性占比
+const calculateVisibility = () => {
+  const view = map.value.getView();
+  // 获取当前主视图显示范围
+  /*
+  (minX, maxY)         (maxX, maxY)
+  (10, 40)             (30, 40)
+   +--------------------+
+   |                    |
+   |                    |
+   |                    |
+   +--------------------+
+  (minX, minY)         (maxX, minY)
+  (10, 20)             (30, 20)
+  extent 数组中的四个坐标（左、下、右、上）表示的是一个矩形区域的边界
+  左边界（minX）：矩形区域的最左侧的 x 坐标。
+  下边界（minY）：矩形区域的最下侧的 y 坐标。
+  右边界（maxX）：矩形区域的最右侧的 x 坐标。
+  上边界（maxY）：矩形区域的最上侧的 y 坐标。
+  */
+  const extent = view.calculateExtent(map.value.getSize());
+  // 获取上海显示范围
+  const shanghaiExtent = sq_layerVector.value.getSource().getExtent();
+  // 计算视窗和上海图层的交集区域
+  const intersection = [
+    Math.max(extent[0], shanghaiExtent[0]), // 左边界的较大值
+    Math.max(extent[1], shanghaiExtent[1]), // 下边界的较大值
+    Math.min(extent[2], shanghaiExtent[2]), // 右边界的较小值
+    Math.min(extent[3], shanghaiExtent[3])  // 上边界的较小值
+  ];
+  // 检查是否有交集
+  if (intersection[2] < intersection[0] || intersection[3] < intersection[1]) {
+    return 0; // 如果没有交集，返回 0
+  }
+  // 计算交集面积和视窗面积
+  const intersectionArea = (intersection[2] - intersection[0]) * (intersection[3] - intersection[1]);
+  const viewArea = (extent[2] - extent[0]) * (extent[3] - extent[1]);
+  // 返回交集面积与视窗面积的比值
+  return intersectionArea / viewArea;
+};
+// 设置图层可见性
+const setLayerVisibility = (isVisible) => {
+  csj_layerVector.value.setVisible(isVisible); // 设置长三角图层的可见性
+};
+// 设置特性样式
+const setFeatureStyles = (style, hiddenStyle) => {
+  sq_layerVector.value.getSource().getFeatures().forEach((f) => {
+    f.setStyle(f === visibleFeature.value ? style : hiddenStyle); // 为特性设置样式
   });
 };
+// 更新图层的可见性
+const updateLayerVisibility = olUtils.throttle(() => {
+  const visibilityRatio = calculateVisibility(); // 计算可见性占比
+  const zoomLevel = map.value.getView().getZoom(); // 获取当前缩放等级
 
+  if (visibilityRatio > 0.4 && zoomLevel >= 7) {
+    setLayerVisibility(false); // 隐藏长三角图层
+    if (visibleFeature.value !== null) {
+      setFeatureStyles(stylesMap.shStyle, hiddenStyle); // 显示选中的区县，隐藏其他区县
+    }
+  } else {
+    setLayerVisibility(true); // 显示长三角图层
+    if (visibleFeature.value !== null) {
+      setFeatureStyles(stylesMap.shStyle, stylesMap.csjStyle); // 显示选中的区县，使用长三角样式显示其他区县
+    }
+  }
+}, 200); // 200 毫秒的节流时间
+// 初始化矢量图层
+const initVectorLayer = (geoJson, style, zIndex) => {
+  const layer = new VectorLayer({
+    source: new VectorSource({features: []}),
+    style: style,
+    zIndex: zIndex,
+  });
+  olUtils.addFeaturesByUrl(layer, geoJson); // 通过 URL 添加特性
+  return layer;
+};
+// 初始化地图
+const initMap = () => {
+  // 初始化长三角图层
+  csj_layerVector.value = initVectorLayer(ChangJiangDeltaGeoJson, stylesMap.csjStyle, 716);
+  // 初始化上海图层
+  sq_layerVector.value = initVectorLayer(ShangHaiGeoJson, stylesMap.shStyle, 807);
+
+  // 创建地图对象
+  map.value = new Map({
+    layers: [csj_layerVector.value, sq_layerVector.value],
+    view: new View({
+      center: fromLonLat(mapConstants.CENTER), // 设置地图中心
+      zoom: 9, // 初始缩放等级
+      projection: 'EPSG:3857', // 投影方式 默认为'EPSG：3857'；
+      maxZoom: 18, // 最大缩放等级
+      minZoom: 4, // 最小缩放等级
+    }),
+    target: 'map', // 地图容器的 ID
+    controls: olControl.defaults({
+      attribution: false, // 不显示版权信息
+      rotate: false, // 不允许旋转
+      zoom: true, // 显示缩放控件
+      zoomOptions: {delta: 5}, // 缩放控件的步长
+    }),
+    interactions: olInteraction.defaults({
+      doubleClickZoom: false, // 禁用双击缩放
+      pinchRotate: false, // 禁用触摸旋转
+    }),
+  });
+
+  // 监听地图移动结束事件，更新图层的可见性
+  map.value.on('moveend', updateLayerVisibility);
+
+  // 添加鼠标指针移动事件，改变可点击区域的指针样式
+  map.value.on('pointermove', (e) => {
+    const hit = map.value.hasFeatureAtPixel(e.pixel, {
+      layerFilter: (layer) => layer === sq_layerVector.value
+    });
+    map.value.getTargetElement().style.cursor = hit && visibleFeature.value === null ? 'pointer' : ''; // 如果有可点击区域且没有选中的区县，显示手指样式
+  });
+
+  // 添加点击事件
+  map.value.on('singleclick', (e) => {
+    // 如果 visibleFeature.value 不为 null，则不处理点击事件
+    if (visibleFeature.value !== null) {
+      return;
+    }
+
+    // 处理点击事件
+    map.value.forEachFeatureAtPixel(e.pixel, (feature) => {
+      // 显示点击的区县，隐藏其他区县
+      sq_layerVector.value.getSource().getFeatures().forEach((f) => {
+        f.setStyle(f === feature ? stylesMap.shStyle : hiddenStyle);
+      });
+      visibleFeature.value = feature;
+
+      // 获取点击特性的几何中心
+      const geometry = feature.getGeometry();
+      const extent = geometry.getExtent();
+      const center = [(extent[0] + extent[2]) / 2, (extent[1] + extent[3]) / 2];
+
+      // 动画到点击特性中心，并放大
+      map.value.getView().animate({
+        center: center,
+        zoom: 10, // 放大到 10 级
+        duration: 1000 // 动画时长 1 秒
+      });
+    }, {
+      layerFilter: (layer) => layer === sq_layerVector.value // 仅处理上海图层的点击事件
+    });
+  });
+};
+// 将 map 对象提供给子组件
 provide('map', map);
 
+// 组件挂载时初始化地图
 onMounted(() => {
   initMap();
 });
 </script>
-
 
 <template>
   <div id="map" class="map">

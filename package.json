@@ -12,6 +12,7 @@
     "@types/node": "^20.14.11",
     "ol": "^9.2.4",
     "ol-ext": "^4.0.21",
+    "pinia": "^2.2.0",
     "vue": "^3.4.31"
   },
   "devDependencies": {

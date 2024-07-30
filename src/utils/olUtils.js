@@ -1,15 +1,10 @@
 import GeoJSON from 'ol/format/GeoJSON';
 
-export default {
-    readFeatures,
-    addFeaturesByUrl,
-}
-
 /**
  * 读取geo json 数据
  * @returns {*}
  */
-function readFeatures(features) {
+const readFeatures = (features) => {
     return new GeoJSON().readFeatures(
         features, {
             dataProjection: "EPSG:4326",
@@ -23,10 +18,31 @@ function readFeatures(features) {
  * 读取geo json 数据
  * @returns {*}
  */
-async function addFeaturesByUrl(vector, geoJson, itemFn) {
+const addFeaturesByUrl=(vector, geoJson, itemFn)=> {
     for (let i = 0; i < geoJson.features.length; i++) {
         let featureArr = readFeatures(geoJson.features[i]);
         vector.getSource().addFeatures(featureArr);
     }
     return vector
+}
+
+// 节流函数，用于减少频繁触发的事件次数
+const throttle = (func, limit) => {
+    let inThrottle;
+    return function () {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+};
+
+
+export default {
+    readFeatures,
+    addFeaturesByUrl,
+    throttle
 }
