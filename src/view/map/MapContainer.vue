@@ -14,7 +14,6 @@ import ChangJiangDeltaGeoJson from "@/assets/json/ChangjiangDelta.js";
 import olUtils from "@/utils/olUtils.js";
 import MapOverview from "@/view/map/compoents/MapOverview.vue";
 import {Fill, Stroke, Style} from "ol/style";
-import {useCreateMarkVectorLayer, useCreateVectorLayer} from "@/utils/useMap.js";
 
 // 创建 ref 对象来保存地图和图层的引用
 const map = ref(null);
@@ -101,7 +100,6 @@ const updateLayerVisibility = olUtils.throttle(() => {
 // 创建矢量图层
 const csj_layerVector = useCreateVectorLayer(ChangJiangDeltaGeoJson, stylesMap.csjStyle, 716)
 const sq_layerVector = useCreateVectorLayer(ShangHaiGeoJson, stylesMap.shStyle, 807)
-const aaa = useCreateMarkVectorLayer(ShangHaiGeoJson, stylesMap.shStyle, 820)
 
 // 初始化地图
 const initMap = () => {
@@ -176,10 +174,6 @@ provide('map', map);
 // 组件挂载时初始化地图
 onMounted(() => {
   initMap();
-  nextTick(() => {
-    map.value.addLayer(aaa.value)
-    console.log(map.value.getLayers(), "mmmmmm")
-  })
 });
 </script>
 
