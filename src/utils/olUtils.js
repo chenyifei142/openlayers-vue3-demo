@@ -25,6 +25,13 @@ const addFeaturesByUrl=(vector, geoJson, itemFn)=> {
     }
     return vector
 }
+// 辅助函数：获取特性中心点坐标
+const getFeatureCenter = (feature) => {
+    const geometry = new GeoJSON().readFeature(feature).getGeometry();
+    const extent = geometry.getExtent();
+    const center = [(extent[0] + extent[2]) / 2, (extent[1] + extent[3]) / 2];
+    return center;
+};
 
 // 节流函数，用于减少频繁触发的事件次数
 const throttle = (func, limit) => {
@@ -44,5 +51,6 @@ const throttle = (func, limit) => {
 export default {
     readFeatures,
     addFeaturesByUrl,
+    getFeatureCenter,
     throttle
 }

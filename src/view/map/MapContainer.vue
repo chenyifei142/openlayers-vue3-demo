@@ -15,6 +15,7 @@ import olUtils from "@/utils/olUtils.js";
 import MapOverview from "@/view/map/compoents/MapOverview.vue";
 import {Fill, Stroke, Style} from "ol/style";
 import {useCreateVectorLayer} from "@/utils/useMap.js";
+import ExtentBtnCIEE from "@/view/map/compoents/ExtentBtnCIEE.vue";
 
 // 创建 ref 对象来保存地图和图层的引用
 const map = ref(null);
@@ -86,7 +87,7 @@ const updateLayerVisibility = olUtils.throttle(() => {
   const visibilityRatio = calculateVisibility(); // 计算可见性占比
   const zoomLevel = map.value.getView().getZoom(); // 获取当前缩放等级
 
-  if (visibilityRatio > 0.8 && zoomLevel >= 7) {
+  if (visibilityRatio > 0.4 && zoomLevel >= 7) {
     setLayerVisibility(false); // 隐藏长三角图层
     if (visibleFeature.value !== null) {
       setFeatureStyles(stylesMap.shStyle, hiddenStyle); // 显示选中的区县，隐藏其他区县
@@ -180,8 +181,9 @@ onMounted(() => {
 
 <template>
   <div id="map" class="map">
-    <!--    <MapMousePosition/>-->
-    <!--    <MapOverview/>-->
+    <MapMousePosition/>
+    <MapOverview/>
+    <ExtentBtnCIEE/>
   </div>
 </template>
 
