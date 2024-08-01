@@ -1,5 +1,6 @@
-import {Fill, Stroke, Style,Icon,Text} from 'ol/style';
+import {Fill, Stroke, Style, Icon, Text} from 'ol/style';
 import CircleStyle from 'ol/style/Circle';
+
 const page_fontSizeScale = 1;
 export default {
     noborderSHStyle: new Style({
@@ -14,7 +15,7 @@ export default {
     shStyle: new Style({
         stroke: new Stroke({
             color: [109, 246, 255, 0.7],
-            width:  1,
+            width: 1,
         }),
         fill: new Fill({
             color: [0, 236, 239, 0.21],
@@ -32,7 +33,7 @@ export default {
     csjStyle: new Style({
         stroke: new Stroke({
             color: [109, 246, 255, 0.5],
-            width:  1,
+            width: 1,
         }),
         fill: new Fill({
             color: [0, 236, 239, 0.1],
@@ -59,7 +60,7 @@ export default {
     gjhzzxStyle: new Style({
         stroke: new Stroke({
             color: [109, 246, 255, 1.0],
-            width:  5,
+            width: 5,
         }),
         fill: new Fill({
             color: "transparent",
@@ -84,36 +85,33 @@ export default {
             color: [11, 166, 27, 0],
         }),
     }),
-    // gcz: new Style({
-    //     image: new CircleStyle({
-    //         radius: 5,
-    //         stroke: new Stroke({
-    //             color: "rgba(61, 133, 198, 1.0)",
-    //             width: 1.0,
-    //         }),
-    //         fill: new Fill({
-    //             color: "rgba(3, 205, 255, 1)",
-    //         }),
-    //     }),
-    // }),
+    hiddenStyle: new Style({
+        fill: new Fill({
+            color: 'rgba(0, 0, 0, 0)', // 完全透明
+        }),
+        stroke: new Stroke({
+            color: 'rgba(0, 0, 0, 0)', // 完全透明
+        }),
+    }),
     pointBase: function (img) {
-       return  new Style({
+        return new Style({
             image: new Icon({
                 opacity: 0.95,
-                src: img ,
+                src: img,
             }),
             stroke: new Stroke({
                 width: 1,
                 color: "#3fdaff",
             }),
-            fill: new Fill({ color: [15, 52, 120, 0.8] }),
+            fill: new Fill({color: [15, 52, 120, 0.8]}),
             text: new Text({
                 text: "",
-                fill: new Fill({ color: "#86daff" }),
-                stroke: new Stroke({ color: "#86daff", width: 1 }),
+                fill: new Fill({color: "#86daff"}),
+                stroke: new Stroke({color: "#86daff", width: 1}),
                 offsetX: 0,
                 offsetY: 0,
-            })})
+            })
+        })
     },
 
 }

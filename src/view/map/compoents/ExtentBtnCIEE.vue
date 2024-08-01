@@ -1,6 +1,6 @@
 <script setup>
 
-import {inject, nextTick, onMounted} from "vue";
+import {inject, nextTick, onMounted, ref} from "vue";
 import jinbohui_area from "@/assets/json/jinbohui_area.js";
 import VectorLayer from "ol/layer/Vector.js";
 import VectorSource from "ol/source/Vector.js";
@@ -30,17 +30,18 @@ const warningrange_type = {
     核心区: [230, 0, 0, 0.3],
   },
 };
+const weatherStation = ref(null)
 
-const createExtent = () => {
-  const layer = new VectorLayer({
+const createLayer = () => {
+  weatherStation.value = new VectorLayer({
     source: new VectorSource({features: []}),
   });
-  olUtils.addFeaturesByUrl(layer, jinbohui_area);
+  olUtils.addFeaturesByUrl(weatherStation.value, jinbohui_area);
 
-  for (let item of layer.getSource().getFeatures()) {
+  for (let item of weatherStation.value.getSource().getFeatures()) {
     item.setStyle(setFeaturesStyle(item.get('type')))
   }
-  map.value.addLayer(layer);
+  map.value.addLayer(weatherStation.value);
 }
 const setFeaturesStyle = (type) => {
   return new Style({
@@ -55,17 +56,19 @@ const setFeaturesStyle = (type) => {
 
 }
 
-onMounted(async () => {
-  await nextTick(() => {
-    createExtent()
+const handleShangHaiLayerClick = () => {
+
+}
+
+onMounted(() => {
+  nextTick(() => {
+    createLayer()
+    handleShangHaiLayerClick()
   })
 });
 </script>
 
 <template>
-  <div id="map-mouse-position" class="mouse-position-container">
-    <div id="custom-mouse-position" class="custom-mouse-position">&nbsp;</div>
-  </div>
 </template>
 
 <style scoped>

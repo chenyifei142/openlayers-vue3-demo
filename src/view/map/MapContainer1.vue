@@ -2,10 +2,8 @@
 import "ol/ol.css";
 import Map from "ol/Map";
 import View from "ol/View";
-import {onMounted, provide, ref} from "vue";
+import {nextTick, onMounted, provide, ref} from "vue";
 import {fromLonLat} from "ol/proj";
-import VectorLayer from "ol/layer/Vector";
-import VectorSource from "ol/source/Vector";
 import * as olControl from 'ol/control';
 import * as olInteraction from 'ol/interaction';
 import mapConstants from '@/constants/map.constants.js';
@@ -16,12 +14,11 @@ import ChangJiangDeltaGeoJson from "@/assets/json/ChangjiangDelta.js";
 import olUtils from "@/utils/olUtils.js";
 import MapOverview from "@/view/map/compoents/MapOverview.vue";
 import {Fill, Stroke, Style} from "ol/style";
-
+import {useCreateVectorLayer} from "@/utils/useMap.js";
+import ExtentBtnCIEE from "@/view/map/compoents/ExtentBtnCIEE.vue";
 
 // 创建 ref 对象来保存地图和图层的引用
 const map = ref(null);
-const csj_layerVector = ref(null);
-const sq_layerVector = ref(null);
 const visibleFeature = ref(null); // 用于存储当前显示的特性
 
 // 创建一个完全透明的样式，用于隐藏未选中的区县
@@ -84,6 +81,7 @@ const setFeatureStyles = (style, hiddenStyle) => {
     f.setStyle(f === visibleFeature.value ? style : hiddenStyle); // 为特性设置样式
   });
 };
+
 // 更新图层的可见性
 const updateLayerVisibility = olUtils.throttle(() => {
   const visibilityRatio = calculateVisibility(); // 计算可见性占比
@@ -101,23 +99,12 @@ const updateLayerVisibility = olUtils.throttle(() => {
     }
   }
 }, 200); // 200 毫秒的节流时间
-// 初始化矢量图层
-const initVectorLayer = (geoJson, style, zIndex) => {
-  const layer = new VectorLayer({
-    source: new VectorSource({features: []}),
-    style: style,
-    zIndex: zIndex,
-  });
-  olUtils.addFeaturesByUrl(layer, geoJson); // 通过 URL 添加特性
-  return layer;
-};
+// 创建矢量图层
+const csj_layerVector = useCreateVectorLayer(ChangJiangDeltaGeoJson, stylesMap.csjStyle, 716)
+const sq_layerVector = useCreateVectorLayer(ShangHaiGeoJson, stylesMap.shStyle, 807)
+
 // 初始化地图
 const initMap = () => {
-  // 初始化长三角图层
-  csj_layerVector.value = initVectorLayer(ChangJiangDeltaGeoJson, stylesMap.csjStyle, 716);
-  // 初始化上海图层
-  sq_layerVector.value = initVectorLayer(ShangHaiGeoJson, stylesMap.shStyle, 807);
-
   // 创建地图对象
   map.value = new Map({
     layers: [csj_layerVector.value, sq_layerVector.value],
@@ -196,6 +183,7 @@ onMounted(() => {
   <div id="map" class="map">
     <MapMousePosition/>
     <MapOverview/>
+    <ExtentBtnCIEE/>
   </div>
 </template>
 

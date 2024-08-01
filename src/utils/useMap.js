@@ -1,4 +1,4 @@
-import {onMounted, ref} from "vue";
+import {onMounted, provide, ref} from "vue";
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
 import olUtils from "@/utils/olUtils.js";
@@ -7,6 +7,47 @@ import Point from "ol/geom/Point";
 import {Fill, Stroke, Style, Text} from "ol/style";
 import GeoJSON from "ol/format/GeoJSON";
 import * as olProj from "ol/proj.js";
+import Map from "ol/Map.js";
+import View from "ol/View.js";
+import {fromLonLat} from "ol/proj.js";
+import mapConstants from "@/constants/map.constants.js";
+import * as olControl from "ol/control.js";
+import * as olInteraction from "ol/interaction.js";
+
+/**
+ * 创建初始话地图
+ * @returns {Ref<UnwrapRef<null>>}
+ */
+export const useMap = () => {
+    const map = ref(null)
+    const initMap = () => {
+        map.value = new Map({
+            layers: [],
+            view: new View({
+                center: fromLonLat(mapConstants.CENTER), // 设置地图中心
+                zoom: 9, // 初始缩放等级
+                projection: 'EPSG:3857', // 投影方式 默认为'EPSG：3857'；
+                maxZoom: 18, // 最大缩放等级
+                minZoom: 4, // 最小缩放等级
+            }),
+            target: 'map', // 地图容器的 ID
+            controls: olControl.defaults({
+                attribution: false, // 不显示版权信息
+                rotate: false, // 不允许旋转
+                zoom: true, // 显示缩放控件
+                zoomOptions: {delta: 5}, // 缩放控件的步长
+            }),
+            interactions: olInteraction.defaults({
+                doubleClickZoom: false, // 禁用双击缩放
+                pinchRotate: false, // 禁用触摸旋转
+            }),
+        });
+    }
+    onMounted(() => {
+        initMap()
+    })
+    return map
+}
 
 /**
  * 创建矢量图层并添加片区名字标注
@@ -25,32 +66,7 @@ export const useCreateVectorLayer = (geoJson, style, zIndex) => {
     });
 
     olUtils.addFeaturesByUrl(layer.value, geoJson); // 通过 URL 添加特性
-    // 遍历GeoJSON数据，添加标注
-    geoJson.features.forEach((feature) => {
-        const coordinates = olUtils.getFeatureCenter(feature);
-        const name = feature.properties.name ?? feature.properties.NAME; // 假设片区名字在properties.name字段
 
-        const textFeature = new Feature({
-            geometry: new Point(olProj.fromLonLat(coordinates)),
-            name: name,
-        });
-
-        // 设置文本样式
-        const textStyle = new Style({
-            text: new Text({
-                font: '12px Calibri,sans-serif',
-                fill: new Fill({color: '#000'}), // 设置文本填充颜色
-                stroke: new Stroke({
-                    color: '#fff', width: 2,
-                }),
-                text: name,
-                overflow: true // 允许文字溢出
-            }),
-        });
-
-        textFeature.setStyle(textStyle);
-        layer.value.getSource().addFeature(textFeature);
-    });
     return layer;
 }
 

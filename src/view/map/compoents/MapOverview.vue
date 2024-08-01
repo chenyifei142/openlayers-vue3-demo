@@ -3,14 +3,14 @@ import {inject, nextTick, onMounted} from "vue";
 import Overview from 'ol-ext/control/Overview';
 import {Fill, Stroke, Style} from "ol/style";
 import CircleStyle from "ol/style/Circle";
-import ShangHaiGeoJson from '@/assets/json/ShangHai.js'
 import ChangJiangDeltaGeoJson from "@/assets/json/ChangjiangDelta.js";
 import stylesMap from "@/view/map/compoents/style/stylesMap.js";
 import {useCreateVectorLayer} from "@/utils/useMap.js";
+import shanghaiDistrictGeoJson from "@/assets/json/ShanghaiDistrict.js";
 
 const map = inject('map')
 const csj_layerVector = useCreateVectorLayer(ChangJiangDeltaGeoJson, stylesMap.csjStyle, 716)
-const sq_layerVector = useCreateVectorLayer(ShangHaiGeoJson, stylesMap.shStyle, 807)
+const sq_layerVector = useCreateVectorLayer(shanghaiDistrictGeoJson, stylesMap.shStyle, 807)
 
 const createOverviewMapControl = () => {
   const layersOVMap = [csj_layerVector.value, sq_layerVector.value];
