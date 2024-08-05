@@ -1,0 +1,370 @@
+/* .typhoon_list {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 40%;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    font-size: 16px;
+    background: white;
+  } */
+.typhoon_list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.typhoonList-head {
+  height: 26px;
+  background-color: #008cc6;
+  line-height: 26px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding-left: 5px;
+  text-align: center;
+}
+.typhoonList-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0 10px;
+  color: #fff;
+  height: 26px;
+  line-height: 26px;
+  cursor: pointer;
+  /* display: none; */
+}
+.typhoon_list table {
+  width: 100%;
+}
+/**radio、checkbox**/
+.typhoon_list .radio,
+.typhoon_list .checkbox {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  opacity: 0;
+  z-index: 2;
+  margin: 0;
+}
+.typhoon_list .radio + label,
+.typhoon_list .checkbox + label {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+}
+.typhoon_list .radio:disabled + label,
+.typhoon_list .checkbox:disabled + label {
+  background: #fff;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #efefef;
+  background: #f9f9f9;
+}
+.typhoon_list .radio:checked + label:before,
+.typhoon_list .radio:checked + label:after,
+.typhoon_list .tc_tr.selected .checkbox + label:before,
+.typhoon_list .tc_tr.selected .checkbox + label:after
+/* ,.typhoon_list .checkbox:checked + label:before,
+.typhoon_list .checkbox:checked + label:after  */
+ {
+  content: "";
+  position: absolute;
+}
+.typhoon_list .tc_tr.selected .checkbox + label:after,
+.typhoon_list .radio:checked + label:after
+/* ,.typhoon_list .checkbox:checked + label:after  */
+ {
+  top: -1px;
+  left: -1px;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #f90;
+}
+
+/**radio**/
+.typhoon_list .radio + label {
+  border-radius: 22px;
+}
+.typhoon_list .radio:checked + label:before {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background: #f90;
+  left: 50%;
+  top: 50%;
+  margin: -5px 0 0 -5px;
+}
+.typhoon_list .radio:checked + label:after {
+  border-radius: 100%;
+}
+
+/**checkbox**/
+.typhoon_list .tc_tr.selected .checkbox + label:before
+/* ,.typhoon_list .checkbox:checked + label:before  */
+ {
+  left: 50%;
+  top: 50%;
+  margin: -4px 0 0 -5px;
+  border-left: 2px solid #f90;
+  border-bottom: 2px solid #f90;
+  width: 8px;
+  height: 4px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.typhoon_list .tc_tr.tc_tr_sm .checkbox + label {
+  width: 12px;
+  height: 12px;
+  box-sizing: content-box;
+  background: transparent;
+  cursor: pointer;
+}
+.typhoon_list .tc_tr.tc_tr_sm .checkbox + label:before {
+  margin: -3px 0 0 -4px;
+  width: 6px;
+  height: 3px;
+}
+
+.realtyphoon_tableHeadWrap {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+.realtyphoon_tableWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  height: calc(100% - 30px - 15px - 15px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.realtyphoonpage .realtyphoon_tableWrap {
+  height: calc(100% - 58px);
+}
+.historytyphoonpage .realtyphoon_tableWrap {
+  height: calc(100% - 58px - 90px - 18px);
+}
+.realtyphoon_table {
+  width: 100%;
+  /* height: 100%; */
+  border-collapse: collapse;
+}
+.realtyphoon_table thead tr {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background-color: rgba(4, 70, 102, 0.5);
+  color: rgba(0, 235, 241, 1);
+}
+.realtyphoon_table tr {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+.realtyphoon_table td,
+.realtyphoon_table td div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  box-sizing: border-box;
+  height: 30px;
+  min-height: 20px;
+  line-height: 30px;
+  margin: 0;
+  padding: 0;
+}
+.realtyphoon_table td.td_name div {
+  height: auto;
+}
+.realtyphoon_table td.td_ename div {
+  width: 100%;
+  height: auto;
+}
+.realtyphoon_table tbody tr:nth-child(even) {
+  background-color: rgba(4, 70, 102, 0.2);
+  color: #fff;
+}
+.realtyphoon_table tbody tr.selected {
+  box-sizing: border-box;
+  /* border: 1px dashed #008cc6;
+  background-color: #bce4f5; */
+  color: #f90;
+}
+
+.realtyphoon_table tr .td_chk {
+  width: 50px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  /* text-align: center; */
+  text-indent: 10px;
+}
+.realtyphoon_table tr .td_index,
+.realtyphoon_table tr .td_tfbh {
+  width: 100px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+.realtyphoon_table tr .td_name {
+  width: 100px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+.realtyphoon_table tr .td_btns {
+  width: 60px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.realtyphoon_table tr .td_distince {
+  width: auto;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.similarTyphoon {
+  width: 600px;
+  height: 170px;
+  bottom: 90px;
+  left: 10px;
+  z-index: 20191021;
+  background-color: #041730;
+  border: 1px solid rgba(0, 235, 241, 1);
+  position: absolute;
+}
+.importClickClass {
+  width: 500px;
+  height: 300px;
+}
+.similarTyphoonTitle {
+  padding-left: 10px;
+  display: block;
+  margin: 0;
+  height: 35px;
+  line-height: 45px;
+  cursor: pointer;
+  color: rgba(0, 235, 241, 1);
+  background-color: rgba(4, 70, 102, 0.5);
+  text-align: left;
+  font-size: 20px;
+  line-height: 35px;
+  margin-bottom: 5px;
+}
+.similarTyphoonTable {
+  height: 100%;
+  height: calc(100% - 35px);
+  margin: 10px;
+}
+.similarTyphoonTitleImg {
+  float: right;
+  width: 23px;
+  height: 23px;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.similarTyphoonTable .detailTableHead table tr td {
+  width: 15.5%;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+}
+.similarTyphoonTable .detailTableHead table tr td:first-child {
+  width: 7% !important;
+}
+.similarTyphoonTable .detailTableBody table tr td {
+  width: 15.5%;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+}
+.similarTyphoonTable .detailTableBody table tr td:first-child {
+  width: 7% !important;
+}
+.historyTitle {
+  color: darkorange;
+  font-weight: 400;
+  font-size: 20px;
+  height: 21px;
+  line-height: 25px;
+}
+
+.typhoonPanel table td {
+  text-align: center;
+  font-weight: 400;
+  line-height: 30px;
+  font-size: 18px;
+  width: 30%;
+}
+.typhoonTableHead table td {
+  width: 23.3%;
+}
+.typhoonPanel {
+  padding-bottom: 30px;
+}
+.typhoonPanel table {
+  width: 100%;
+}
+.similarTyphoonTable table {
+  width: 100%;
+}
+.typhoonTableBody table td {
+  width: 23.3%;
+  line-height: 25px;
+}
+.detailTableHead table td,
+.typhoonTableHead table td {
+  background-color: rgba(4, 70, 102, 0.5);
+  color: rgba(0, 235, 241, 1);
+}
+.typhoonTableHead {
+  margin-bottom: 10px;
+}
+
+.detailTableBody table td {
+  border-bottom: 1px solid rgba(0, 235, 241, 1);
+  font-size: 14px;
+}
+.bodyCss_typhoon table td {
+  color: #fff;
+  text-align: center;
+}
+.detailTableBody {
+  overflow: auto;
+}
+.typhoonTableBody {
+  overflow: auto;
+}
+.typhoonTableBody table td > div {
+  text-align: center;
+  width: 25%;
+  background-color: rgba(4, 70, 102, 0.2);
+  margin-bottom: 10px;
+  width: 100%;
+  font-size: 14px;
+}

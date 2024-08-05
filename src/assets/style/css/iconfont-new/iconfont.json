@@ -1,0 +1,548 @@
+{
+  "id": "3155832",
+  "name": "xianZhi",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-new-",
+  "description": "先知Icon",
+  "glyphs": [
+    {
+      "icon_id": "5715246",
+      "name": "co",
+      "font_class": "co",
+      "unicode": "e6222",
+      "unicode_decimal": 942626
+    },
+    {
+      "icon_id": "13724887",
+      "name": "no2",
+      "font_class": "no2",
+      "unicode": "e60e3",
+      "unicode_decimal": 942307
+    },
+    {
+      "icon_id": "23462545",
+      "name": "so2",
+      "font_class": "so2",
+      "unicode": "e6004",
+      "unicode_decimal": 942084
+    },
+    {
+      "icon_id": "4571695",
+      "name": "O3",
+      "font_class": "O3",
+      "unicode": "e8393",
+      "unicode_decimal": 951187
+    },
+    {
+      "icon_id": "5611129",
+      "name": "PM10",
+      "font_class": "PM10",
+      "unicode": "e6335",
+      "unicode_decimal": 942901
+    },
+    {
+      "icon_id": "26515763",
+      "name": "pm2.5",
+      "font_class": "a-pm25",
+      "unicode": "e6775",
+      "unicode_decimal": 943989
+    },
+    {
+      "icon_id": "27697319",
+      "name": "AQI",
+      "font_class": "AQI",
+      "unicode": "e6e32",
+      "unicode_decimal": 945714
+    },
+    {
+      "icon_id": "27285445",
+      "name": "农业",
+      "font_class": "nongye",
+      "unicode": "e793f",
+      "unicode_decimal": 948543
+    },
+    {
+      "icon_id": "12346740",
+      "name": "下一步",
+      "font_class": "xiayibu",
+      "unicode": "e6a5f",
+      "unicode_decimal": 944735
+    },
+    {
+      "icon_id": "11521313",
+      "name": "地图",
+      "font_class": "ditu",
+      "unicode": "e778f",
+      "unicode_decimal": 948111
+    },
+    {
+      "icon_id": "34881016",
+      "name": "返回",
+      "font_class": "fanhui",
+      "unicode": "e6a06",
+      "unicode_decimal": 944646
+    },
+    {
+      "icon_id": "34121689",
+      "name": "概率",
+      "font_class": "gaishuai",
+      "unicode": "e6a01",
+      "unicode_decimal": 944641
+    },
+    {
+      "icon_id": "34121695",
+      "name": "风速 (1)",
+      "font_class": "a-fengsu1",
+      "unicode": "e6a02",
+      "unicode_decimal": 944642
+    },
+    {
+      "icon_id": "34121697",
+      "name": "温度-低",
+      "font_class": "wendu-di",
+      "unicode": "e6a03",
+      "unicode_decimal": 944643
+    },
+    {
+      "icon_id": "34121826",
+      "name": "温度-高",
+      "font_class": "wendu-gao",
+      "unicode": "e6a04",
+      "unicode_decimal": 944644
+    },
+    {
+      "icon_id": "34121892",
+      "name": "空气温度",
+      "font_class": "kongqiwendu",
+      "unicode": "e6a05",
+      "unicode_decimal": 944645
+    },
+    {
+      "icon_id": "32964781",
+      "name": "能见度安全",
+      "font_class": "nengjianduanquan",
+      "unicode": "e6015",
+      "unicode_decimal": 942101
+    },
+    {
+      "icon_id": "2076261",
+      "name": "景点",
+      "font_class": "gaoceng",
+      "unicode": "e88f7",
+      "unicode_decimal": 952567
+    },
+    {
+      "icon_id": "5604592",
+      "name": "景点",
+      "font_class": "shiyou",
+      "unicode": "e93e3",
+      "unicode_decimal": 955363
+    },
+    {
+      "icon_id": "8219417",
+      "name": "景点景观",
+      "font_class": "jiangnan",
+      "unicode": "e60d4",
+      "unicode_decimal": 942292
+    },
+    {
+      "icon_id": "8850413",
+      "name": "晚霞-01",
+      "font_class": "wanxia",
+      "unicode": "e6224",
+      "unicode_decimal": 942628
+    },
+    {
+      "icon_id": "3607070",
+      "name": "绿洲_运营_客流",
+      "font_class": "lvzhou_yunying_keliu",
+      "unicode": "e629d",
+      "unicode_decimal": 942749
+    },
+    {
+      "icon_id": "685501",
+      "name": "暴雨",
+      "font_class": "baoyu",
+      "unicode": "e6f24",
+      "unicode_decimal": 945956
+    },
+    {
+      "icon_id": "701954",
+      "name": "冰雹",
+      "font_class": "bingbao",
+      "unicode": "e7069",
+      "unicode_decimal": 946281
+    },
+    {
+      "icon_id": "398699",
+      "name": "打雷",
+      "font_class": "dalei",
+      "unicode": "e6026",
+      "unicode_decimal": 942118
+    },
+    {
+      "icon_id": "201577",
+      "name": "3.1电话",
+      "font_class": "dianhua",
+      "unicode": "e765",
+      "unicode_decimal": 59237
+    },
+    {
+      "icon_id": "720977",
+      "name": "坐标",
+      "font_class": "xiazai19",
+      "unicode": "e766",
+      "unicode_decimal": 59238
+    },
+    {
+      "icon_id": "4933375",
+      "name": "人物-人",
+      "font_class": "renwu-ren",
+      "unicode": "e767",
+      "unicode_decimal": 59239
+    },
+    {
+      "icon_id": "14033451",
+      "name": "风险查询",
+      "font_class": "fengxianchaxun",
+      "unicode": "e7581",
+      "unicode_decimal": 947585
+    },
+    {
+      "icon_id": "30842904",
+      "name": "大风倒伏",
+      "font_class": "dafengdaofu",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "5996718",
+      "name": "七级风",
+      "font_class": "force-7-wind",
+      "unicode": "e6f19",
+      "unicode_decimal": 945945
+    },
+    {
+      "icon_id": "5996722",
+      "name": "十二级及以上台风",
+      "font_class": "force-12-wind",
+      "unicode": "e6f55",
+      "unicode_decimal": 946005
+    },
+    {
+      "icon_id": "5996731",
+      "name": "十级风",
+      "font_class": "force-10-wind",
+      "unicode": "e6f91",
+      "unicode_decimal": 946065
+    },
+    {
+      "icon_id": "5485664",
+      "name": "速度",
+      "font_class": "sudu",
+      "unicode": "e61f9",
+      "unicode_decimal": 942585
+    },
+    {
+      "icon_id": "28606925",
+      "name": "气压2",
+      "font_class": "qiya2",
+      "unicode": "e6bf1",
+      "unicode_decimal": 945137
+    },
+    {
+      "icon_id": "1727601",
+      "name": "901巡检、检验",
+      "font_class": "xunjianjianyan",
+      "unicode": "e9074",
+      "unicode_decimal": 954484
+    },
+    {
+      "icon_id": "689245",
+      "name": "官方2",
+      "font_class": "guanfang",
+      "unicode": "e7ef9",
+      "unicode_decimal": 950009
+    },
+    {
+      "icon_id": "1788967",
+      "name": "集合",
+      "font_class": "jihe",
+      "unicode": "e6a51",
+      "unicode_decimal": 944721
+    },
+    {
+      "icon_id": "6237287",
+      "name": "列表模式_块",
+      "font_class": "liebiaomoshi_kuai",
+      "unicode": "ec7e6",
+      "unicode_decimal": 968678
+    },
+    {
+      "icon_id": "30444475",
+      "name": "异常",
+      "font_class": "yichang",
+      "unicode": "ee710",
+      "unicode_decimal": 976656
+    },
+    {
+      "icon_id": "30444476",
+      "name": "调试次数",
+      "font_class": "tiaoshicishu",
+      "unicode": "ee711",
+      "unicode_decimal": 976657
+    },
+    {
+      "icon_id": "30444477",
+      "name": "运行中",
+      "font_class": "yunhangzhong",
+      "unicode": "ee712",
+      "unicode_decimal": 976658
+    },
+    {
+      "icon_id": "30444478",
+      "name": "模型总数",
+      "font_class": "moxingzongshu",
+      "unicode": "ee713",
+      "unicode_decimal": 976659
+    },
+    {
+      "icon_id": "30444479",
+      "name": "增长",
+      "font_class": "shang",
+      "unicode": "ee714",
+      "unicode_decimal": 976660
+    },
+    {
+      "icon_id": "1221891",
+      "name": "火焰",
+      "font_class": "hot",
+      "unicode": "e760",
+      "unicode_decimal": 59232
+    },
+    {
+      "icon_id": "1799668",
+      "name": "低温治疗",
+      "font_class": "diwenzhiliao",
+      "unicode": "e761",
+      "unicode_decimal": 59233
+    },
+    {
+      "icon_id": "2002643",
+      "name": "大到暴雪",
+      "font_class": "dadaobaoxue",
+      "unicode": "e762",
+      "unicode_decimal": 59234
+    },
+    {
+      "icon_id": "5996695",
+      "name": "雷电",
+      "font_class": "thunder",
+      "unicode": "e763",
+      "unicode_decimal": 59235
+    },
+    {
+      "icon_id": "8936804",
+      "name": "太阳",
+      "font_class": "taiyang",
+      "unicode": "e764",
+      "unicode_decimal": 59236
+    },
+    {
+      "icon_id": "26692635",
+      "name": "大风",
+      "font_class": "dafeng",
+      "unicode": "e69b1",
+      "unicode_decimal": 944561
+    },
+    {
+      "icon_id": "16199697",
+      "name": "口罩",
+      "font_class": "ganmao",
+      "unicode": "e970",
+      "unicode_decimal": 59760
+    },
+    {
+      "icon_id": "20860694",
+      "name": "肠胃科",
+      "font_class": "fuxie",
+      "unicode": "e60f8",
+      "unicode_decimal": 942328
+    },
+    {
+      "icon_id": "4748103",
+      "name": "病毒",
+      "font_class": "bingdu",
+      "unicode": "e7c6c",
+      "unicode_decimal": 949356
+    },
+    {
+      "icon_id": "16204112",
+      "name": "心脏",
+      "font_class": "xinzang",
+      "unicode": "e9f7e",
+      "unicode_decimal": 958334
+    },
+    {
+      "icon_id": "30231855",
+      "name": "预报风场",
+      "font_class": "yubaofengchang",
+      "unicode": "e752",
+      "unicode_decimal": 59218
+    },
+    {
+      "icon_id": "30222796",
+      "name": "空调外机",
+      "font_class": "kongtiaowaiji",
+      "unicode": "e750",
+      "unicode_decimal": 59216
+    },
+    {
+      "icon_id": "30222787",
+      "name": "广告牌",
+      "font_class": "guanggaopai",
+      "unicode": "e751",
+      "unicode_decimal": 59217
+    },
+    {
+      "icon_id": "30033658",
+      "name": "大雾",
+      "font_class": "wulan",
+      "unicode": "e700",
+      "unicode_decimal": 59136
+    },
+    {
+      "icon_id": "30033662",
+      "name": "港口",
+      "font_class": "gangkoulan",
+      "unicode": "e701",
+      "unicode_decimal": 59137
+    },
+    {
+      "icon_id": "30033664",
+      "name": "航线",
+      "font_class": "hangxianlan",
+      "unicode": "e702",
+      "unicode_decimal": 59138
+    },
+    {
+      "icon_id": "30033665",
+      "name": "航道",
+      "font_class": "hangdaolan",
+      "unicode": "e703",
+      "unicode_decimal": 59139
+    },
+    {
+      "icon_id": "30033667",
+      "name": "海事分区",
+      "font_class": "haishifenqulan",
+      "unicode": "e704",
+      "unicode_decimal": 59140
+    },
+    {
+      "icon_id": "806560",
+      "name": "小学",
+      "font_class": "xiaoxue",
+      "unicode": "e61e1",
+      "unicode_decimal": 942561
+    },
+    {
+      "icon_id": "9648101",
+      "name": "中学",
+      "font_class": "qitaxuexiao",
+      "unicode": "e60e1",
+      "unicode_decimal": 942305
+    },
+    {
+      "icon_id": "19878816",
+      "name": "中学",
+      "font_class": "zhongxue",
+      "unicode": "e66a3",
+      "unicode_decimal": 943779
+    },
+    {
+      "icon_id": "22232293",
+      "name": "幼儿园",
+      "font_class": "youeryuan",
+      "unicode": "f71b2",
+      "unicode_decimal": 1012146
+    },
+    {
+      "icon_id": "29234639",
+      "name": "暴雨-实况报警",
+      "font_class": "shikuangbaojing",
+      "unicode": "e67c1",
+      "unicode_decimal": 944065
+    },
+    {
+      "icon_id": "1331",
+      "name": "高速",
+      "font_class": "gonglu",
+      "unicode": "e600c",
+      "unicode_decimal": 942092
+    },
+    {
+      "icon_id": "23374585",
+      "name": "城市轨道交通运营保障队",
+      "font_class": "guidaojiaotong",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "24055781",
+      "name": "建筑工地",
+      "font_class": "jianzhugongdi",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "17871415",
+      "name": "风险预警2",
+      "font_class": "fengxianyujing",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "28811208",
+      "name": "声音静音",
+      "font_class": "shengyinjingyin",
+      "unicode": "ac002",
+      "unicode_decimal": 704514
+    },
+    {
+      "icon_id": "28811209",
+      "name": "喇叭",
+      "font_class": "laba",
+      "unicode": "ac001",
+      "unicode_decimal": 704513
+    },
+    {
+      "icon_id": "27377155",
+      "name": "小学-绿",
+      "font_class": "xiaoxue-lv",
+      "unicode": "a67c",
+      "unicode_decimal": 42620
+    },
+    {
+      "icon_id": "27377156",
+      "name": "幼儿园-低",
+      "font_class": "youeryuan-di",
+      "unicode": "a67d",
+      "unicode_decimal": 42621
+    },
+    {
+      "icon_id": "27377157",
+      "name": "儿童哮喘-蓝",
+      "font_class": "ertongxiaochuan-lan",
+      "unicode": "a67e",
+      "unicode_decimal": 42622
+    },
+    {
+      "icon_id": "27377158",
+      "name": "幼儿园-绿",
+      "font_class": "youeryuan-lv",
+      "unicode": "a67f",
+      "unicode_decimal": 42623
+    }
+  ]
+}

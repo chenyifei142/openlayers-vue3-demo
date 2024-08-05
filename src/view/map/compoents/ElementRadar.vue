@@ -23,7 +23,7 @@ const createLayer = () => {
 
   ldLayerVector.value.setProperties({
     featureClickFn: (feature) => {
-      let popupHtml = '<div id="popup-sitepoint" class="popup-sitepoint popup-ldpoint">';
+        let popupHtml = '<div id="popup-sitepoint" class="popup-sitepoint popup-ldpoint">';
       popupHtml += "<code>" + feature.getProperties().value.name + "</code><br/>";
       popupHtml += "</div>";
       return {

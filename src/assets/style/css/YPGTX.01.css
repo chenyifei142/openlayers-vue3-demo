@@ -1,0 +1,450 @@
+﻿.popup-ydgccpoint-206_111 {
+  background-color: transparent;
+  width: 225px;
+  height: 129px;
+  background-image: url(../img/YPGTX/浮标弹框1.png);
+  background-repeat: no-repeat;
+  background-size: 225px 129px;
+  position: relative;
+  background-position: -9px -9px;
+}
+
+.popup-ydgccpoint {
+  background-color: transparent;
+  width: 300px;
+  height: 140px;
+  background-image: url(../img/YPGTX/浮标弹框1.png);
+  background-repeat: no-repeat;
+  background-size: 300px 140px;
+  position: relative;
+  background-position: -1px 4px;
+}
+.popup-ydgccpoint .pophead {
+  height: 50px;
+  padding: 25px 25px 5px 35px;
+}
+.popup-ydgccpoint .popup-title:after {
+  top: 50px;
+  left: 35px;
+}
+.popup-ydgccpoint {
+  background-color: transparent;
+  width: 300px;
+  height: 150px;
+  background-image: url(../img/YPGTX/浮标弹框1.png);
+  background-repeat: no-repeat;
+  background-size: 280px 160px;
+  position: relative;
+  background-position: 10px -1px;
+}
+.popup-ydgccpoint svg {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 300px;
+  height: 138px;
+}
+
+/*城市高度风*/
+.heightHtml {
+  width: 3px;
+  background-color: #1296cb;
+  position: absolute;
+  left: 20px;
+  top: 55px;
+  bottom: 15px;
+}
+.lineStru {
+  width: 20px;
+  height: 1px;
+  background-color: #1296cb;
+  position: absolute;
+}
+.textStru {
+  color: #1296cb;
+  left: 25px;
+  position: absolute;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.ImportInstru {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 20px 0 20px 30px;
+}
+.importImg {
+  background-image: url(../img/YPGTX/nr_t1.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: auto;
+  height: 90%;
+  margin-top: 9%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.instruStyle {
+  color: #fff;
+  font-size: 18px;
+  height: auto;
+  /* position: relative; */
+  text-align: left;
+  position: absolute;
+  width: auto;
+  white-space: nowrap;
+}
+.instruStyle_qiao {
+  color: #fff;
+  font-size: 18px;
+  height: auto;
+  position: relative;
+  text-align: left;
+}
+
+.dfmz_100 {
+  bottom: 10%;
+  left: 35%;
+}
+.dfmz_恒隆广场_288 {
+  bottom: 45%;
+  left: 2%;
+}
+.dfmz_明天广场_283 {
+  bottom: 20%;
+  left: 13%;
+}
+.dfmz_上海世茂国际广场_333 {
+  bottom: 55%;
+  left: 23%;
+}
+.dfmz_东方明珠_468 {
+  bottom: 72%;
+  left: 37%;
+}
+.dfmz_环球金融中心_492 {
+  bottom: 85%;
+  left: 53%;
+}
+.dfmz_世贸大厦_420 {
+  bottom: 65%;
+  left: 70%;
+}
+.dfmz_上海中心_632 {
+  bottom: 100%;
+  left: 82%;
+}
+
+/* 01 */
+
+/* 预警监控 */
+/* svg element */
+.link_text {
+  font: 10px sans-serif;
+  fill: #fff;
+}
+
+.link_time {
+  font: 16px sans-serif;
+  fill: #fff;
+}
+
+.link_up_nextLong_line,
+.link_up_next_line,
+.link_up_next_slant,
+.link_up_vertical_line {
+  stroke-width: 2px;
+  stroke: #ffaf47;
+}
+
+.link_up_nextLong_line {
+  stroke-width: 2px;
+  stroke-dasharray: 120px;
+  stroke-dashoffset: 0px;
+}
+
+.link_up_next_line {
+  stroke-width: 2px;
+  stroke-dasharray: 60px;
+  stroke-dashoffset: 0px;
+}
+
+.link_up_next_slant {
+  stroke-width: 2px;
+  stroke-dasharray: 10px;
+  stroke-dashoffset: 0px;
+}
+
+.hover_toggling_on .link_up_nextLong_line,
+.hover_toggled_on .link_up_nextLong_line {
+  stroke-dashoffset: 120px;
+  transition: all ease-in 0.2s;
+}
+
+.hover_toggling_on .link_up_next_line,
+.hover_toggled_on .link_up_next_line {
+  stroke-dashoffset: 60px;
+  transition: all ease-in 0.2s;
+}
+
+.hover_toggling_on .link_up_next_slant,
+.hover_toggled_on .link_up_next_slant {
+  stroke-dashoffset: 30px;
+  transition: all ease-in 0.2s 0.2s;
+}
+
+.hover_toggling_off .link_up_nextLong_line {
+  stroke-dashoffset: 0px;
+  transition: all 0.25s ease-in;
+}
+
+.hover_toggling_off .link_up_next_line {
+  stroke-dashoffset: 0px;
+  transition: all 0.25s ease-in;
+}
+
+.hover_toggling_off .link_up_next_slant {
+  stroke-dashoffset: 0px;
+  transition: all 0.3s ease-in 0.1s;
+}
+
+.light-wrap:hover .light.glow {
+  opacity: 0.2;
+  background: -webkit-radial-gradient(
+    rgba(255, 223, 67, 1),
+    rgba(255, 223, 67, 0) 70%
+  );
+  transition: all 800ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.light-wrap .light.glow {
+  opacity: 0;
+  background: -webkit-radial-gradient(
+    rgba(255, 223, 67, 1),
+    rgba(255, 223, 67, 0) 70%
+  );
+  transition: all 1000ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  fill: url(#polkadot);
+  fill: url(#reflect);
+  stroke: rgba(255, 223, 67, 1);
+  stroke: url(#def_lg_linear);
+}
+
+.dynamicTree svg {
+  overflow: visible;
+}
+@media screen and (min-width: 1081px) and (max-width: 1920px) {
+  .dynamicTree svg {
+    transform: scale(0.7) translateX(200px) translateY(-146px);
+  }
+
+  .dynamicTree #warning_no {
+    transform: scale(0.8) translateY(5%);
+  }
+}
+
+@media screen and (min-width: 1921px) {
+  .dynamicTree svg {
+    transform: scale(0.8) translateX(-10px) translateY(-86px);
+  }
+
+  .dynamicTree #warning_no {
+    transform: scale(0.8) translateY(5%);
+  }
+
+  #warning-html-icon-wrapper {
+    position: relative;
+    text-align: center;
+    height: 60px;
+    top: auto;
+  }
+
+  #warning-html {
+    text-indent: 24px;
+  }
+
+  #warning-html-title {
+    padding-left: 0;
+  }
+}
+
+#warningCenterMonitorAnimate .earlywarning-header {
+  display: none;
+}
+
+.d-inflex {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.d-flex {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-domtitle="预警监控"] [data-domtitle="预警发布"] .machineRuntimeContent {
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+[data-domtitle="预警监控"]
+  [data-domtitle="预警发布"]
+  .machineRuntimeContent:before {
+  content: none;
+  background: none;
+}
+
+[data-domtitle="预警监控"]
+  [data-domtitle="预警发布"]
+  .YPGTX-tablewrap
+  .machineDatetimeText {
+  margin-left: 0;
+  padding-left: 35px;
+  padding-top: 0;
+}
+[data-domtitle="预警监控"]
+  [data-domtitle="预警发布"]
+  .YPGTX-tablewrap
+  .machineDatetimeText.title-icon:before {
+  margin-top: 0;
+}
+/* [data-domtitle="预警监控"].layui-col-md6
+  .earlywarning-col-wrapper.layui-col-md6 {
+  width: 100%;
+} */
+[data-domtitle="气象快讯"] .machineDatetimeText,
+[data-domtitle="气象快讯"] .machineUnitText {
+  display: none;
+}
+[data-domtitle="气象快讯"] .YPGTX-table + .layui-table-view {
+  margin-top: 10px;
+}
+
+/*
+*/
+.YPGTX-staticinfo-num{
+  font-size: 16px !important;
+}
+.YPGTX-staticinfo-numbig{
+  font-size: 20px !important;
+}
+
+.YPGTX-staticinfo-table tr td > div.title2row{
+  white-space: normal;
+  line-height: 20px;
+  padding: 0 5px;
+}
+@media screen and (max-width: 1920px) {
+  .YPGTX-staticinfo-table tr td > div.title2row{
+    line-height: 36px;
+  }
+}
+
+.YPGTX-staticinfo-JKQX.YPGTX-staticinfo-table tr td > div {
+  height: 48px;
+  line-height: 48px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+.YPGTX-staticinfo-JKQX.YPGTX-staticinfo-table {
+  background-size: 98% 100%;
+  background-image: url(../img/YPGTX/kuang@2.png);
+  background-repeat: no-repeat;
+}
+
+.YPGTX-staticinfo-JZGD.YPGTX-staticinfo-table tr td > div{
+  height: 38px;
+  /* line-height: 36px; */
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding: 0 5px;
+  font-size: 14px;
+}
+@media screen and (max-width: 1920px) {
+  .YPGTX-staticinfo-JZGD.YPGTX-staticinfo-table tr td > div{
+    height: 30px;
+  }
+}
+.YPGTX-staticinfo-JZGD.YPGTX-staticinfo-table tr td > div.textRight {
+  font-size: 20px;
+}
+
+.YPGTX-staticinfo-GDJT.YPGTX-staticinfo-table tr td > div{
+  height: 70px;
+  line-height: 70px;
+  margin-top: 5px;
+  margin-bottom: 0;
+  padding: 0 10px;
+  font-size: 18px;
+}
+/* [data-domtitle="轨道交通"] .layui-layer{
+  bottom: 0px !important;
+  top: auto !important;
+} */
+
+.YPGTX-110ZQ-wrap{
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.YPGTX-110ZQ-title{
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+}
+.YPGTX-110ZQ-content{
+  width: 100%;
+  height: calc(100% - 40px);
+  padding: 15px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  color: rgba(0, 235, 241, 1);
+  font-size: 18px;
+  font-weight: 400;
+  text-indent: 24px;
+  padding-left: 20px;
+  line-height: 30px;
+  overflow: auto;
+  padding-top: 30px;
+}
+.YPGTX-110ZQ-name {
+    height: 34px;
+    line-height: 34px;
+    background: rgba(0, 160, 219, 0.1);
+    margin-bottom: 10px;
+    padding: 0 15px;
+    font-size: 16px;
+}
+.YPGTX-110ZQ-num {
+    height: 34px;
+    line-height: 34px;
+    background: rgba(0, 160, 219, 0.1);
+    margin-bottom: 10px;
+    padding: 0 15px;
+    font-size: 20px;
+}
+.YPGTX-layer [data-domtitle="110灾情"] .machineRuntimeContent > div > .layui-col-md6{
+  border-bottom: 2px solid rgba(29, 112, 128, 1);
+}
+.YPGTX-layer [data-domtitle="110灾情"] .machineRuntimeContent > div:last-child > .layui-col-md6{
+  border-bottom: 2px solid transparent;
+}
+.YPGTX-layer [data-domtitle="110灾情"] .machineRuntimeContent > div > .layui-col-md6:nth-child(2n - 1){
+  border-right: 2px solid rgba(29, 112, 128, 1);
+}

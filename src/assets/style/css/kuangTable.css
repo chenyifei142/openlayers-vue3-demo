@@ -1,0 +1,183 @@
+/* table style */
+.YPGTX-table.layui-table {
+  width: 100%;
+  color: #fff;
+  background-color: transparent;
+}
+.YPGTX-table.layui-table tbody tr:hover,
+.YPGTX-table.layui-table tbody tr,
+.YPGTX-table.layui-table thead tr {
+  background-color: rgba(10, 33, 77, 1);
+  color: rgba(66, 181, 247, 1);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(24, 72, 133, 1);
+}
+.YPGTX-table.layui-table td,
+.YPGTX-table.layui-table th,
+.YPGTX-table.layui-table[lay-skin="line"],
+.YPGTX-table.layui-table[lay-skin="row"] {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(24, 72, 133, 1);
+  color: rgba(255, 255, 255, 1);
+}
+.YPGTX-table.layui-table td[rowspan]:first-child {
+  color: rgba(66, 181, 247, 1);
+}
+.YPGTX-table.layui-table th,
+.YPGTX-table.layui-table header {
+  background-color: rgba(20, 62, 121, 1);
+  color: rgba(66, 181, 247, 1);
+}
+
+.layui-table-view {
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+.layui-table-view,
+.layui-table-view .layui-table {
+  width: 100%;
+  color: #fff;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.layui-table-view .layui-table-cell {
+  height: 24px;
+  line-height: 24px;
+}
+
+.layui-table-view thead .layui-table-cell {
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(0, 235, 241, 1);
+}
+/* */
+.layui-table-view .layui-table tbody tr,
+.layui-table-view .layui-table thead tr,
+.layui-table-view .layui-table-click,
+.layui-table-view .layui-table-header,
+.layui-table-view .layui-table-hover,
+.layui-table-view .layui-table-mend,
+.layui-table-view .layui-table-patch,
+.layui-table-view .layui-table-tool,
+.layui-table-view .layui-table[lay-even] tr:nth-child(even) {
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+.layui-table-view .layui-table th,
+.layui-table-view .layui-table-fixed-r,
+.layui-table-view .layui-table-header {
+  border-width: 0px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.layui-table-view .layui-table td {
+  border-width: 0px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.layui-table-view .layui-table tbody tr:hover,
+.layui-table-view .layui-table-hover {
+  background: rgba(35, 68, 91, 0.46);
+  /* border: 1px solid rgba(107, 234, 255, 1); */
+  cursor: pointer;
+}
+.layui-table-view .layui-table tbody td {
+  color: rgba(255, 255, 255, 1);
+  /* border-bottom: 1px solid rgba(0, 160, 219, 0.27);
+  border-top: 1px solid rgba(0, 160, 219, 0.27); */
+}
+
+.layui-table-view .layui-table tbody tr.layui-table-click,
+.layui-table-view .layui-table-click {
+  /* border: 1px solid rgba(107, 234, 255, 1); */
+  position: relative;
+  /* border: none; */
+  border-left: 6px solid rgba(107, 234, 255, 1);
+  /* border: 1px solid rgba(107, 234, 255, 1); */
+}
+.layui-table-view .layui-table tbody tr.layui-table-click td {
+  border: none;
+  background: rgba(0, 160, 219, 0.15);
+}
+.layui-table-view .layui-table tbody tr td a {
+  color: #fff;
+  cursor: pointer;
+}
+.layui-table-view .layui-table tbody tr td a:hover {
+  color: rgba(107, 234, 255, 1);
+}
+/* .layui-table-view .layui-table tbody tr {
+  position: relative;
+}
+.YPGTX-table
+  + .layui-table-view
+  .layui-table
+  tbody
+  tr.layui-table-click:before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0%;
+  transform: translate(0%, 0%);
+  background-color: transparent;
+  border-left: 2px solid rgba(107, 234, 255, 1);
+} */
+
+/* .layui-table-view .layui-table td:first-child {
+  color: rgba(66, 181, 247, 1);
+} */
+.layui-table-view .layui-table th {
+  font-weight: 700;
+}
+
+.layui-table-view .layui-table th,
+.layui-table-view .layui-table header {
+  background: rgba(0, 160, 219, 0.2);
+}
+
+.YPGTX-page .layui-table-tips-main {
+  background-color: rgba(4, 20, 36, 1);
+  color: #fff;
+  border: 1px solid rgba(29, 112, 128, 1);
+}
+.YPGTX-page .layui-table-tips-main img,
+.YPGTX-page .layui-table-tips-main label {
+  display: block;
+}
+.YPGTX-page .layui-table-tips-main a,
+.YPGTX-page .layui-table-tips-main label {
+  color: #fff;
+}
+.YPGTX-page .layui-table-tips-main img {
+  max-height: 100px;
+}
+.YPGTX-page .layui-table-grid-down {
+  background-color: rgba(4, 20, 36, 1);
+  color: #fff;
+  border: 1px solid rgba(29, 112, 128, 1);
+}
+
+.YPGTX-page .layui-table-tips-c {
+  right: -10px;
+  top: -12px;
+  background-color: rgba(4, 20, 36, 1);
+  color: #fff;
+  border: 1px solid rgba(29, 112, 128, 1);
+}
+.YPGTX-page .layui-table-tips-c:before {
+  position: relative;
+  right: 2px;
+  top: -4px;
+}
+
+

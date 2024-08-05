@@ -1,0 +1,112 @@
+/* --------------------------------------------- 台风列表中的筛选菜单样式 ------------------------------------- */
+.el-popper.typhoonList-popper {
+    width: 70px;
+    background-color: rgba(4, 70, 102, 0.8);
+    max-height: 200px;
+    border-radius: 2px;
+    margin-top: 4px;
+}
+
+.el-popper.typhoonList-popper>.el-scrollbar {
+    max-height: 190px;
+}
+
+.el-popper.typhoonList-popper>.el-scrollbar .el-scrollbar__wrap {
+    margin-right: 0 !important;
+    max-height: 190px;
+}
+
+.el-popper.typhoonList-popper>.el-scrollbar .el-select-dropdown__item,
+.el-popper.SelectDate-popper>.el-scrollbar .el-select-dropdown__item,
+.el-popper.SelectTime-popper>.el-scrollbar .el-select-dropdown__item{
+    color: #fff;
+    transition: all .3s;
+}
+
+.el-popper.typhoonList-popper>.el-scrollbar .el-select-dropdown__item.selected,
+.el-popper.typhoonList-popper>.el-scrollbar .el-select-dropdown__item:hover,
+.el-popper.typhoonList-popper>.el-scrollbar .el-select-dropdown__item.hover {
+    background-color: #5FB878;
+    color: #fff;
+}
+
+.el-popper.typhoonList-popper>.el-scrollbar .el-select-dropdown__list .el-select-dropdown__item {
+    padding: 0 10px;
+    height: 26px;
+    line-height: 26px;
+}
+
+.el-popper.typhoonList-popper>.popper__arrow {
+    display: none;
+}
+
+.el-popper.typhoonList-popper>.el-scrollbar .el-scrollbar__bar.is-vertical {
+    display: none;
+}
+
+.el-popper[x-placement^=bottom].typhoonList-popper {
+    margin-top: 0px;
+}
+
+.el-popper[x-placement^=top].typhoonList-popper {
+    margin-bottom: 0px;
+}
+
+/* --------------------------------------------- 实况选择时间段样式 ------------------------------------- */
+
+
+.el-popper.SelectDate-popper,
+.el-popper.SelectTime-popper{
+    background-color: rgba(4, 70, 102, 0.8);
+    max-height: 200px;
+    border-radius: 2px;
+    margin-top: 4px;
+}
+
+.el-popper.SelectDate-popper>.el-scrollbar,
+.el-popper.SelectTime-popper>.el-scrollbar{
+    max-height: 190px;
+}
+
+.el-popper.SelectDate-popper>.el-scrollbar .el-scrollbar__wrap,
+.el-popper.SelectTime-popper>.el-scrollbar .el-scrollbar__wrap{
+    margin-right: 0 !important;
+    max-height: 190px;
+}
+
+.el-popper.SelectDate-popper>.el-scrollbar .el-select-dropdown__item.selected,
+.el-popper.SelectDate-popper>.el-scrollbar .el-select-dropdown__item:hover,
+.el-popper.SelectDate-popper>.el-scrollbar .el-select-dropdown__item.hover,
+.el-popper.SelectTime-popper>.el-scrollbar .el-select-dropdown__item.selected,
+.el-popper.SelectTime-popper>.el-scrollbar .el-select-dropdown__item:hover,
+.el-popper.SelectTime-popper>.el-scrollbar .el-select-dropdown__item.hover{
+    background-color: #5FB878;
+    color: #fff;
+}
+
+.el-popper.SelectDate-popper>.el-scrollbar .el-select-dropdown__list .el-select-dropdown__item,
+.el-popper.SelectTime-popper>.el-scrollbar .el-select-dropdown__list .el-select-dropdown__item{
+    padding: 0 10px;
+    height: 26px;
+    line-height: 26px;
+}
+
+.el-popper.SelectDate-popper>.popper__arrow,
+.el-popper.SelectTime-popper>.popper__arrow {
+    display: none;
+}
+
+.el-popper.SelectDate-popper>.el-scrollbar .el-scrollbar__bar.is-vertical,
+.el-popper.SelectTime-popper>.el-scrollbar .el-scrollbar__bar.is-vertical {
+    display: none;
+}
+
+.el-popper[x-placement^=bottom].SelectDate-popper,
+.el-popper[x-placement^=bottom].SelectTime-popper{
+    margin-top: 0px;
+}
+
+.el-popper[x-placement^=top].SelectDate-popper,
+.el-popper[x-placement^=top].SelectTime-popper{
+    margin-bottom: 0px;
+}

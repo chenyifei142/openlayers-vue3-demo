@@ -1,0 +1,232 @@
+/*::-webkit-scrollbar {width:4px; height:5px; background-color:transparent;}*/
+/*::-webkit-scrollbar-track {background-color:#f0f6ff;  }*/
+/*::-webkit-scrollbar-thumb {background-color:#dcdcdc; border-radius:4px;} */
+.scrollbarHide::-webkit-scrollbar{display: none}
+.scrollbarShow::-webkit-scrollbar{display: block}
+
+
+.appSkin
+{
+    width: 100vw;
+    height: 95vh;
+}
+.mainSkin
+{
+    margin-left:10px;
+    margin-top:10px;
+    width: 640px;
+    height: 210px;
+    border: 1px solid #999999;
+}
+.hisInfoSkin
+{
+    position: absolute;
+    top: 220px;
+    margin-top:10px;
+    width: 640px;
+    height:  calc(100% - 260px);
+    overflow-y: auto;
+}
+.el-table td, .el-table th {
+    padding: 12px 0;
+    min-width: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    position: relative;
+    text-align: center;
+}
+.floatLeft
+{
+    float: left;
+}
+.marginLeft
+{
+    margin-left: 10px;
+}
+.marginRight
+{
+    margin-right: 10px;
+}
+.marginTop
+{
+    margin-top: 10px;
+}
+.el-input--suffix .el-input__inner {
+    padding-right: 8px;
+}
+.zhxg-wrap{
+    overflow: scroll;
+    height: calc(100% - 40px);
+}
+.select-box-btns {
+    position: relative;
+    /* bottom: 10px; */
+    left: 50%;
+    margin-left: -25px;
+}
+.select-box-btns input.layui-btn.layui-btn-sm{
+    width: 50px;
+}
+
+.zhxg-select-box{
+    height: calc(100% - 80px) !important;
+}
+.zhxg-wrap .select-content{
+    height: 30px !important;
+}
+
+.layui-unselect.layui-form-select{
+    width: 70px;
+}
+
+.zhxg-wrap input.layui-input.layui-unselect{
+    border: 1px solid;
+    width: 100px;
+    height: 26px;
+}
+
+.tython input.layui-input.layui-unselect{
+    width:60px;
+}
+.lasttime {
+    position: relative;
+    right: -50px;
+}
+
+
+/*屏幕设备判断*/
+@media screen and (min-width:3840px){
+    .windclass{
+        width: 40px !important;
+    }
+    .njd{
+        width:80px !important;
+    }
+
+    #right-6-1-chartwrap2 .layui-table td, .layui-table th{
+        font-size: 12px !important;
+    }
+    #right-6-1-chartwrap{
+        width: 365px;
+    }
+    #right-6-1-chartwrap2{
+        width: 168px;
+        float: right;
+    }
+    .foretime .layui-form-selectup dl{
+        bottom:auto;
+    }
+
+    /*.tython{*/
+    /*    right: 13px !important;*/
+    /*}*/
+    /*对于气象快讯左边的小三角*/
+    #right-6-1-chartwrap2  img{
+        height: 12px !important;
+    }
+    #right-6-1-chartwrap2 .layui-table-cell{
+        padding: 0px !important;
+    }
+
+    #right-6-1-chartwrap2 .layui-table-cell.laytable-cell-2-0-4 span{
+        padding-left: 15px !important;
+
+    }
+}
+/*改写位置*/
+.ZNXG-layer.YPGTX-layer .layui-layer-setwin .layui-layer-close2{
+    top: -15px !important;
+    right: 1px !important;
+}
+#right-6-1-chartwrap2 .YPGTX-table + .layui-table-view{
+    margin-top: 0px;
+}
+.zhxg-wrap input[type="text"]{
+    width: 130px;
+}
+.lasttime .layui-unselect.layui-form-select{
+    width: 106px;
+}
+.foretime .layui-unselect.layui-form-select{
+    width: 110px;
+}
+.zhxg-wrap option{
+    color: #fff;
+    background-color: rgb(4 43 63);
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+}
+
+#starTimeId,#endTimeId{
+    opacity: 0;
+    width: 110px;
+    position: absolute;
+    left: 50px;
+    z-index: 99999;
+}
+.tanchu_kuang {
+    height: 100%;
+    min-width: 480px!important;
+    min-height: 200px!important;
+    z-index: 100;
+    border-radius: 1px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.kuang_title_box:hover {
+    cursor:move;
+}
+.kuang_title_box {
+    position: absolute;
+    width: 100%;
+    height: 32px;
+    z-index: 100;
+    background: #003567;
+}
+.kuang_title_box span {
+    line-height: 32px;
+    padding-left: 10px;
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    font-family: '微软雅黑';
+}
+.imgSkin{
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #999;
+    overflow-y: auto;
+}
+.publishSkin
+{
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 60px;
+}
+
+.flushIconSkin
+{
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin-left: 6px;
+    margin-top: 10px;
+}
+.zhxg-wrap .zhxg-select-box-title{
+    border-bottom:none !important;
+}
+form.layui-form.tython dl {
+    top: -65px;
+}
+form.layui-form.foretime dl{
+    top: -90px;
+}
+

@@ -1,0 +1,167 @@
+.typhoonLegend {
+  position: fixed;
+  z-index: 1000;
+  width: auto;
+  /* left: 400px;
+  left: calc(100% - 220px);
+  top: 70px; */
+  height: auto;
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3), -1px -1px 3px rgba(0, 0, 0, 0.2);
+  display: block !important;
+  cursor: move;
+}
+.typhoonLegend.leftSideStop {
+  position: fixed;
+  z-index: 1000;
+  width: 100px;
+  bottom: 0;
+  top: 0;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.typhoonLegend .typhoonLegend-side {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0 10px;
+  color: #fff;
+  height: 26px;
+  line-height: 26px;
+  cursor: pointer;
+  /* display: none; */
+}
+.typhoonLegend .typhoonLegend-side i {
+  font-size: 14px;
+}
+.typhoonLegend.leftSideStop .typhoonLegend-side {
+  transform: rotate(-90deg);
+}
+
+.typhoonLegend .typhoonLegend-scrolldown {
+  position: absolute;
+  left: 50%;
+  bottom: 0px;
+  padding: 0;
+  color: #fff;
+  height: 16px;
+  line-height: 16px;
+  cursor: pointer;
+  display: none;
+  transform: rotate(-90deg);
+  margin: 0;
+}
+.typhoonLegend .typhoonLegend-scrolldown i {
+  font-size: 14px;
+}
+.typhoonLegend .typhoonLegend-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0 10px;
+  color: #fff;
+  height: 26px;
+  line-height: 26px;
+  cursor: pointer;
+  /* display: none; */
+}
+
+.typhoonLegend .typhoonLegend-head {
+  height: 26px;
+  background-color: #008cc6;
+  line-height: 26px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding-left: 5px;
+  text-align: center;
+}
+
+.typhoonLegend {
+  height: 60%;
+  /* max-height: 60%; */
+  overflow: hidden;
+}
+
+.typhoonLegend .typhoonLegend-body {
+  height: 100%;
+  height: calc(100% - 26px);
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.typhoonLegend .typhoonLegend-li {
+  border-bottom: 1px #dde1e1 solid;
+  background: #fff;
+  padding: 0 10px;
+  line-height: 30px;
+  height: 30px;
+}
+
+.typhoonLegend .typhoonLegend-li > span {
+  float: left;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.typhoonLegend-li .typhoonCheckbox {
+  float: right;
+  margin-top: 5px;
+}
+.typhoonLegend .typhoonLegend-body > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px #dde1e1 solid;
+  /* height: 72px; */
+  height: auto;
+  overflow: hidden;
+  background: #f0f9ff;
+}
+
+.typhoonLegend .typhoonLegend-body > ul > li {
+  float: left;
+  width: 90px;
+  height: 24px;
+  line-height: 24px;
+  color: #666;
+  margin-left: 10px;
+  position: relative;
+}
+
+.typhoonLegend .typhoonLegend-body > ul > li > label {
+  margin-left: 1px;
+  font-size: 12px;
+}
+
+.typhoonLegend .typhoonLegend-body > ul > li > i.forecaster {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  vertical-align: middle;
+  border-bottom: 2px dashed transparent;
+}
+
+.typhoonLegend .typhoonLegend-body > ul > li > i.level {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 1px solid #999;
+}
+
+.typhoonLegend .typhoonLegend-body > ul > li > i.windcircle {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #999;
+}
