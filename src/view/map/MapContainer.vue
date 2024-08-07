@@ -4,8 +4,8 @@ import {provide} from "vue";
 import MapMousePosition from "@/view/map/compoents/MapMousePosition.vue";
 import MapOverview from "@/view/map/compoents/MapOverview.vue";
 import {useMap} from "@/utils/useMap.js";
-import ExtentBtnCIEE from "@/view/map/compoents/ExtentBtnCIEE.vue";
-import ElementRadar from "@/view/map/compoents/ElementRadar.vue";
+import ExtentBtnCIEE from "@/view/map/compoents/extent-btn/ExtentBtnCIEE.vue";
+import ElementRadar from "@/view/map/compoents/element-btn/ElementRadar.vue";
 import MapLayerYangtzeRiverDelta from "@/view/map/compoents/layer/MapLayerYangtzeRiverDelta.vue";
 import MapLayerShanghaiDistrict from "@/view/map/compoents/layer/MapLayerShanghaiDistrict.vue";
 
