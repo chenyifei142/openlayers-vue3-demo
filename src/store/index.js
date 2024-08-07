@@ -2,7 +2,7 @@ import {defineStore} from "pinia";
 import {ref} from "vue";
 
 
-export const useCounterStore = defineStore('counter', () => {
+export const useMapInfoStore = defineStore('counter', () => {
     const areaId = ref('310100') //区或者市中心ID
     const areaName = ref('') //区或者市中心名称
     const townId = ref('')//乡镇街道ID
