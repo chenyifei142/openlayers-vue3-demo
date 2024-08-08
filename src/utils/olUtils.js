@@ -18,15 +18,31 @@ const readFeatures = (features) => {
     );
 }
 /**
- * 读取geo json 数据
- * @returns {*}
+ * 读取geoJson数据并添加到矢量图层中
+ *
+ * @param vector - 目标矢量图层，将要素添加到该图层中
+ * @param  geoJson - 包含地理要素的GeoJSON对象
+ * @param  itemFn - 可选的回调函数，用于对每个要素数组进行处理
+ *
+ * @returns  返回更新后的矢量图层对象
  */
 const addFeaturesByUrl = (vector, geoJson, itemFn) => {
+    // 遍历GeoJSON数据中的每个feature
     for (let i = 0; i < geoJson.features.length; i++) {
+        // 使用readFeatures函数读取当前feature并转换为OpenLayers中的要素数组
         let featureArr = readFeatures(geoJson.features[i]);
+        // 如果提供了itemFn回调函数，并且它是一个函数
+        if (itemFn && typeof itemFn == 'function') {
+            // 调用回调函数处理当前要素数组
+            itemFn(featureArr);
+        }
+
+        // 将处理后的要素数组添加到矢量图层的source中
         vector.getSource().addFeatures(featureArr);
     }
-    return vector
+
+    // 返回更新后的矢量图层
+    return vector;
 }
 /**
  * 辅助函数：获取特性中心点坐标
@@ -74,47 +90,11 @@ const throttle = (func, limit) => {
     }
 };
 
-// 计算上海图层在视窗中的可见性占比
-const calculateVisibility = (targetLayer, contrastLayer) => {
-    const view = contrastLayer.getView();
-    // 主视图显示范围
-    const extent = view.calculateExtent(contrastLayer.getSize());
-    // 获取目标图层显示范围
-    const targetExtent = targetLayer.getSource().getExtent();
-    // 计算视窗和目标图层的交集区域
-    const intersection = [
-        Math.max(extent[0], targetExtent[0]), // 左边界的较大值
-        Math.max(extent[1], targetExtent[1]), // 下边界的较大值
-        Math.min(extent[2], targetExtent[2]), // 右边界的较小值
-        Math.min(extent[3], targetExtent[3])  // 上边界的较小值
-    ];
-    // 检查是否有交集
-    if (intersection[2] < intersection[0] || intersection[3] < intersection[1]) {
-        return 0; // 如果没有交集，返回 0
-    }
-    // 计算交集面积和视窗面积
-    const intersectionArea = (intersection[2] - intersection[0]) * (intersection[3] - intersection[1]);
-    const viewArea = (extent[2] - extent[0]) * (extent[3] - extent[1]);
-    // 返回交集面积与视窗面积的比值
-    return intersectionArea / viewArea;
-};
-
-const handlePointerStyle = (targetLayer, map) => {
-    // 添加鼠标指针移动事件，改变可点击区域的指针样式
-    map.value.on('pointermove', (e) => {
-        const hit = map.value.hasFeatureAtPixel(e.pixel, {
-            layerFilter: (layer) => layer === targetLayer
-        });
-        map.value.getTargetElement().style.cursor = hit ? 'pointer' : ''; // 如果有可点击区域且没有选中的区县，显示手指样式
-    });
-}
 
 export default {
     readFeatures,
     addFeaturesByUrl,
     getFeatureCenter,
     createVectorLayer,
-    calculateVisibility,
-    handlePointerStyle,
     throttle
 }
