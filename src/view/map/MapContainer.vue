@@ -8,6 +8,7 @@ import ExtentBtnCIEE from "@/view/map/compoents/extent-btn/ExtentBtnCIEE.vue";
 import ElementRadar from "@/view/map/compoents/element-btn/ElementRadar.vue";
 import MapLayerYangtzeRiverDelta from "@/view/map/compoents/layer/MapLayerYangtzeRiverDelta.vue";
 import MapLayerShanghaiDistrict from "@/view/map/compoents/layer/MapLayerShanghaiDistrict.vue";
+import MapAreaNameBtn from "@/view/map/compoents/html-element/MapAreaNameBtn.vue";
 
 const map = useMap()
 // 将 map 对象提供给子组件
@@ -25,6 +26,7 @@ provide('map', map);
     <MapLayerYangtzeRiverDelta/>
     <!--上海区县显示-->
     <MapLayerShanghaiDistrict/>
+    <MapAreaNameBtn></MapAreaNameBtn>
     <ExtentBtnCIEE/>
     <ElementRadar/>
   </div>
