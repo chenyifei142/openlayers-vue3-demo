@@ -1,6 +1,6 @@
 <script setup>
 import {inject, nextTick, onMounted, ref, watch, watchEffect} from "vue";
-import {useCreateVectorLayer} from "@/utils/useMap.js";
+import {useCreateVectorLayer} from "@/hooks/useMap.js";
 import stylesMap from "@/view/map/compoents/style/stylesMap.js";
 import shanghaiDistrictGeoJson from "@/assets/json/ShanghaiDistrict.js";
 import {useMapInfoStore} from "@/store/index.js";

@@ -5,7 +5,7 @@ import {Fill, Stroke, Style} from "ol/style";
 import CircleStyle from "ol/style/Circle";
 import ChangJiangDeltaGeoJson from "@/assets/json/ChangjiangDelta.js";
 import stylesMap from "@/view/map/compoents/style/stylesMap.js";
-import {useCreateVectorLayer} from "@/utils/useMap.js";
+import {useCreateVectorLayer} from "@/hooks/useMap.js";
 import shanghaiDistrictGeoJson from "@/assets/json/ShanghaiDistrict.js";
 
 const map = inject('map')

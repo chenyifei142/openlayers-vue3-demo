@@ -2,12 +2,12 @@ import {onMounted, ref} from "vue";
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
 import olUtils from "@/utils/olUtils.js";
-import {fromLonLat} from "ol/proj.js";
-import Map from "ol/Map.js";
-import View from "ol/View.js";
+import {fromLonLat} from "ol/proj";
+import Map from "ol/Map";
+import View from "ol/View";
 import mapConstants from "@/constants/map.constants.js";
-import * as olControl from "ol/control.js";
-import * as olInteraction from "ol/interaction.js";
+import * as olControl from "ol/control";
+import * as olInteraction from "ol/interaction";
 import {Overlay} from "ol";
 
 /**

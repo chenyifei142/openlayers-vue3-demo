@@ -14,7 +14,7 @@ import ChangJiangDeltaGeoJson from "@/assets/json/ChangjiangDelta.js";
 import olUtils from "@/utils/olUtils.js";
 import MapOverview from "@/view/map/compoents/MapOverview.vue";
 import {Fill, Stroke, Style} from "ol/style";
-import {useCreateVectorLayer} from "@/utils/useMap.js";
+import {useCreateVectorLayer} from "@/hooks/useMap.js";
 import ExtentBtnCIEE from "@/view/map/compoents/extent-btn/ExtentBtnCIEE.vue";
 
 // 创建 ref 对象来保存地图和图层的引用

@@ -1,6 +1,6 @@
 <script setup>
 import {inject, nextTick, onMounted} from "vue";
-import {useCreateVectorLayer} from "@/utils/useMap.js";
+import {useCreateVectorLayer} from "@/hooks/useMap.js";
 import ChangJiangDeltaGeoJson from "@/assets/json/ChangjiangDelta.js";
 import stylesMap from "@/view/map/compoents/style/stylesMap.js";
 import ShangHaiGeoJson from "@/assets/json/ShangHai.js";
