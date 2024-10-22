@@ -4,7 +4,7 @@ import pressureGeoJson from "@/assets/json/pressure.js";
 import {Fill, Stroke, Style} from "ol/style";
 import olUtils from "@/utils/olUtils.js";
 import mapConstants from "@/constants/map.constants.js";
-import {Text} from "ol/style.js";
+import {Text} from "ol/style";
 
 // 注入全局的 map 实例
 const map = inject('map')

@@ -11,6 +11,7 @@ import MapLayerShanghaiDistrict from "@/view/map/compoents/layer/MapLayerShangha
 import MapAreaNameBtn from "@/view/map/compoents/html-element/MapAreaNameBtn.vue";
 import MapLayerAreaRisk from "@/view/map/compoents/layer/MapLayerAreaRisk.vue";
 import MapLayerPressure from "@/view/map/compoents/layer/MapLayerPressure.vue";
+import MapLayerPointAggregation from "@/view/map/compoents/layer/MapLayerPointAggregation.vue";
 
 const map = useMap()
 // 将 map 对象提供给子组件
@@ -32,6 +33,8 @@ provide('map', map);
     <MapLayerAreaRisk/>
     <!--等压线图层-->
     <MapLayerPressure/>
+    <!--点聚合图层-->
+    <MapLayerPointAggregation/>
     <!--地区返回按钮-->
     <MapAreaNameBtn/>
     <!--进博会-->
