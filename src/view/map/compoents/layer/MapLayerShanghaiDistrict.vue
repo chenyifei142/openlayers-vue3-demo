@@ -1,10 +1,10 @@
 <script setup>
-import {inject, nextTick, onMounted, ref, watch, watchEffect} from "vue";
+import {inject, nextTick, onMounted, ref, watch} from "vue";
 import {useCreateVectorLayer} from "@/hooks/useMap.js";
 import stylesMap from "@/view/map/compoents/style/stylesMap.js";
 import shanghaiDistrictGeoJson from "@/assets/json/ShanghaiDistrict.js";
 import {useMapInfoStore} from "@/store/index.js";
-import * as olProj from "ol/proj.js";
+import * as olProj from "ol/proj";
 import mapConstants from "@/constants/map.constants.js";
 import {Style} from "ol/style";
 

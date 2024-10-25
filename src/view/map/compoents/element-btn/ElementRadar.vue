@@ -2,12 +2,12 @@
 
 import {inject, nextTick, onMounted, ref} from "vue";
 import olUtils from "@/utils/olUtils.js";
-import {Fill, Icon, Stroke, Style} from "ol/style";
+import {Icon, Style} from "ol/style";
 import mapConstants from "@/constants/map.constants.js";
 import ChangjiangRadarJson from "@/assets/json/ChangjiangRadar.js";
 import radarIcon from '@/assets/img/雷达站.png'
 import Point from "ol/geom/Point";
-import * as olProj from "ol/proj.js";
+import * as olProj from "ol/proj";
 import Feature from "ol/Feature";
 
 const map = inject('map')

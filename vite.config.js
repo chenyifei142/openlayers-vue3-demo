@@ -13,5 +13,10 @@ export default defineConfig({
         replacement: resolve(__dirname, './src')
       }
     ]
-  }
+  },
+  server: {
+    // 修改这里的端口号
+    port: 3001,
+    // 其他的服务器配置...
+  },
 })

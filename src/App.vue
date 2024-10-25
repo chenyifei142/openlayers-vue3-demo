@@ -1,5 +1,4 @@
 <script setup>
-
 import MapContainer from "./view/map/MapContainer.vue";
 </script>
 
@@ -31,13 +30,10 @@ import MapContainer from "./view/map/MapContainer.vue";
 @import "assets/style/css/border-animate.css";
 @import "assets/style/css/WeatherIcon.css";
 @import "assets/style/css/YPGTX.css";
-/* @import "assets/style/css/YPGTX.06.css";
-@import "assets/style/css/YPGTX.07.css"; */
 @import "assets/style/css/YPGTX.2160p.css";
 @import "assets/style/css/layui/css/layer.css";
 @import "assets/style/css/just-tip.css";
 @import "assets/style/css/elementUiSet.css";
-/*@import "assets/style/css/page2160p.css";*/
 
 .main-box {
   background: rgba(3, 205, 255, 0.12);

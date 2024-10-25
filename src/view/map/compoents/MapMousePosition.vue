@@ -1,7 +1,7 @@
 <script setup>
 import {MousePosition} from "ol/control";
 import * as olCoordinate from "ol/coordinate";
-import {inject, nextTick, onMounted, provide} from "vue";
+import {inject, nextTick, onMounted} from "vue";
 
 const map = inject('map')
 

@@ -1,6 +1,6 @@
 <script setup>
 import {useMapInfoStore} from "@/store/index.js";
-import {computed, watch} from "vue";
+import {computed} from "vue";
 import areaConstants from "@/constants/area.constants.js";
 // 使用 store 管理地图信息
 const mapInfoStore = useMapInfoStore()

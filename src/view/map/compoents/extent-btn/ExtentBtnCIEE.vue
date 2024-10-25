@@ -1,12 +1,10 @@
 <script setup>
-
 import {inject, nextTick, onMounted, ref} from "vue";
 import jinbohui_area from "@/assets/json/jinbohui_area.js";
-import VectorLayer from "ol/layer/Vector.js";
-import VectorSource from "ol/source/Vector.js";
+import VectorLayer from "ol/layer/Vector";
+import VectorSource from "ol/source/Vector";
 import olUtils from "@/utils/olUtils.js";
 import {Fill, Stroke, Style} from "ol/style";
-import width from "ol-ext/util/input/Width.js";
 
 const map = inject('map')
 const warningrange_type = {
