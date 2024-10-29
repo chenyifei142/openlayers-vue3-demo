@@ -12,6 +12,7 @@ import MapAreaNameBtn from "@/view/map/compoents/html-element/MapAreaNameBtn.vue
 import MapLayerAreaRisk from "@/view/map/compoents/layer/MapLayerAreaRisk.vue";
 import MapLayerPressure from "@/view/map/compoents/layer/MapLayerPressure.vue";
 import MapLayerPointAggregation from "@/view/map/compoents/layer/MapLayerPointAggregation.vue";
+import ElementTyphoonBtn from "@/view/map/compoents/element-btn/ElementTyphoonBtn.vue";
 
 const map = useMap()
 // 将 map 对象提供给子组件
@@ -41,6 +42,8 @@ provide('map', map);
     <ExtentBtnCIEE/>
     <!--雷达按钮-->
     <ElementRadar/>
+    <!--台风路径-->
+    <ElementTyphoonBtn/>
   </div>
 </template>
 
