@@ -25,11 +25,10 @@ export const useTyphoonLayer = (options) => {
     const drawTyphoonLayer = () => {
         processPoints(); // 初始化台风路径数据
         if (!points.value || points.value.length === 0) return; // 无有效数据时退出
-
-        addCurrentMarker(); // 添加实时位置覆盖物
         createTyphoonLayer(); // 创建台风路径图层
+        addCurrentMarker(); // 添加实时位置覆盖物
         addLabel(options.baseInfo.tfbh + options.baseInfo.name, points.value[0].lon, points.value[0].lat); // 添加标签
-        animateTyphoonPath(); // 启动路径动画
+        animateTyphoonPath(); // 动画绘制台风路径
     };
 
     // 处理和初始化台风数据点，确保 `points` 中包含台风路径点的信息
@@ -45,72 +44,6 @@ export const useTyphoonLayer = (options) => {
         });
         map.value.addLayer(TyphoonLayer.value); // 将图层添加到地图上
     };
-    /**
-     * 设置弹窗内容
-     * @param feature
-     * @returns {string}
-     */
-    const setPopupTCPointContent = (feature) => {
-        const point = feature.getProperties().value;
-        const snoname_Display = point.tfbh + point.name;
-        const speed_Display = (point.speed || "--") + "m/s";
-        let time_Display = formatDate(point.forecastTime);
-        const isForecastPoint = point.pointType === "forecast"
-        if (isForecastPoint) {
-            //预报点需要增加预报时效
-            const time = new Date(time_Display).getTime() + point.timeNum * 60 * 60 * 1000
-            time_Display = dateToChar(time, 'yyyy-MM-dd HH:mi:ss')
-        }
-        const location_Display = point.lon + "°E | " + point.lat + "°N";
-        const pressure_Display = (point.pressure || "--") + "hPa"
-        return "<div id='popup-tcpoint' class='popup-tcpoint'>" +
-            "<b>台风名称：</b><code>" + snoname_Display + "</code><br/>" +
-            "<b>" + (isForecastPoint ? "预报时间" : "具体时间") + "：</b><code>" +
-            time_Display + "</code><br/>" +
-            (isForecastPoint ? "<b>预报机构：</b><code>" + (point.way || "--") + "</code><br/>" : "") +
-            "<b>中心位置：</b><code>" + location_Display + "</code><br/>" +
-            "<b>强度等级：</b><code>" + (point.tfdes ?? '-') + "</code><br/>" +
-            "<b>最大风力：</b><code>" + (point.lev || point.fl || "-") + '级，' + speed_Display + "</code><br/>" +
-            "<b>中心气压：</b><code>" + pressure_Display + "</code><br/>" +
-            "</div>";
-    }
-    //将已处理的时间格式，例如'20210908010000',转成'yyyy-MM-dd HH:mi:ss'
-    const formatDate = (dateStr) => {
-        if (dateStr) {
-            var str = dateStr + "";
-            const dateFormat = str.substring(0, 4) + "-" + str.substring(4, 6) + "-" + str.substring(6, 8) + " " +
-                str.substring(8, 10) + ':' + str.substring(10, 12) + ':' + str.substring(12, 14);
-            return dateFormat;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * 功能：转换时间格式
-     * 描述: datetime 为输入时间，format 为时间格式
-     */
-    const dateToChar = (datetime, format) => {
-        if (datetime === "" || datetime == null) {
-            return "";
-        } else {
-            format = format.replace(/hh24|HH24/g, 'HH');
-            var date = new Date(datetime);
-            var yyyy = date.getFullYear();
-            var MM = date.getMonth() + 1;
-            var dd = date.getDate();
-            var hh24 = date.getHours();
-            var mi = date.getMinutes();
-            var ss = date.getSeconds();
-            var s1 = format.replace(/yyyy|YYYY/g, yyyy);
-            var s2 = s1.replace(/MM/g, MM < 10 ? "0" + MM : MM);
-            var s3 = s2.replace(/dd|DD/g, dd < 10 ? "0" + dd : dd);
-            var s4 = s3.replace(/hh|HH/g, hh24 < 10 ? "0" + hh24 : hh24);
-            var s5 = s4.replace(/mm|mi|MI/g, mi < 10 ? "0" + mi : mi);
-            var s6 = s5.replace(/ss|SS/g, ss < 10 ? "0" + ss : ss);
-            return s6;
-        }
-    }
 
     // 创建并添加实时位置的覆盖物（具有旋转动画效果的台风图标）
     const markerTyphoon = ref(null);
@@ -160,54 +93,22 @@ export const useTyphoonLayer = (options) => {
         const drawNextSegment = () => {
             if (currentIndex >= points.value.length) return; // 超出路径点则停止绘制
 
-            // 1. 绘制当前台风点
+            // 绘制当前台风点
             const point = points.value[currentIndex]; // 当前路径点数据
-            const pointFeature = new Feature({
-                geometry: new Point(olProj.fromLonLat([+point.lon, +point.lat])) // 创建点特性
-            });
-            pointFeature.setProperties({
-                value: {
-                    name: options.baseInfo.name,
-                    ...point
-                },
-                clickFn: (feature) => {
-                    let popupHtml = setPopupTCPointContent(feature);
-                    return {
-                        popupHtml: popupHtml
-                    }
-                },
-            })
-            pointFeature.setStyle(new Style({
-                image: new CircleStyle({
-                    fill: new Fill({color: getTyphoonPointColor(point.speed)}), // 设置颜色取决于台风速度
-                    stroke: new Stroke({color: "rgba(255,255,255,0.01)", width: 12}), // 半透明边框
-                    radius: 4 // 设置点的半径
-                })
-            }));
+            const pointFeature = createPointFeature(point);
             typhoonSource.addFeature(pointFeature); // 将点添加到图层数据源中
 
-            // 2. 如果不是第一个点，则与前一个点连线
+            // 如果不是第一个点，则与前一个点连线
             if (currentIndex > 0) {
                 const prevPoint = points.value[currentIndex - 1];
-                const lineFeature = new Feature({
-                    geometry: new LineString([
-                        olProj.fromLonLat([+prevPoint.lon, +prevPoint.lat]), // 起点
-                        olProj.fromLonLat([+point.lon, +point.lat]) // 终点
-                    ])
-                });
-                lineFeature.setStyle(new Style({
-                    stroke: new Stroke({
-                        color: getTyphoonPointColor(Math.min(point.speed, prevPoint.speed)), // 设置线的颜色
-                        width: 1 // 线宽
-                    })
-                }));
+                const lineFeature = createLineFeature(prevPoint, point);
                 typhoonSource.addFeature(lineFeature); // 将线添加到图层数据源
             }
 
-            // 3. 更新台风实时位置和风圈覆盖层
+            // 更新台风实时位置和风圈覆盖层
             if (markerTyphoon.value) {
                 markerTyphoon.value.setPosition(olProj.fromLonLat([+point.lon, +point.lat])); // 更新实时位置
-                addWindCircleLayer(point); // 添加或更新风圈覆盖层
+                addWindCircleLayer(point); // 添加风圈覆盖层
             }
 
             currentIndex++; // 增加索引，绘制下一个点
@@ -216,6 +117,44 @@ export const useTyphoonLayer = (options) => {
         };
 
         drawNextSegment(); // 开始绘制路径
+    };
+
+    // 创建路径点特性，设置样式
+    const createPointFeature = (point) => {
+        const feature = new Feature({
+            geometry: new Point(olProj.fromLonLat([+point.lon, +point.lat]))
+        });
+        feature.setProperties({
+            value: {name: options.baseInfo.name, ...point},
+            clickFn: (feature) => ({
+                popupHtml: setPopupTCPointContent(feature)
+            })
+        });
+        feature.setStyle(new Style({
+            image: new CircleStyle({
+                fill: new Fill({color: getTyphoonPointColor(point.speed)}),
+                stroke: new Stroke({color: "rgba(255,255,255,0.01)", width: 12}),
+                radius: 4
+            })
+        }));
+        return feature;
+    };
+
+    // 创建路径点之间的连线特性
+    const createLineFeature = (prevPoint, point) => {
+        const lineFeature = new Feature({
+            geometry: new LineString([
+                olProj.fromLonLat([+prevPoint.lon, +prevPoint.lat]),
+                olProj.fromLonLat([+point.lon, +point.lat])
+            ])
+        });
+        lineFeature.setStyle(new Style({
+            stroke: new Stroke({
+                color: getTyphoonPointColor(Math.min(point.speed, prevPoint.speed)),
+                width: 1
+            })
+        }));
+        return lineFeature;
     };
 
     // 添加风圈（如7级、10级、12级风圈）的覆盖层，表示台风影响范围
@@ -264,6 +203,64 @@ export const useTyphoonLayer = (options) => {
             typhoonWindCircleLayer.value[layerName] = feature;
         }
     };
+
+    // 设置弹窗内容
+    const setPopupTCPointContent = (feature) => {
+        const point = feature.getProperties().value;
+        const snoname_Display = point.tfbh + point.name;
+        const speed_Display = (point.speed || "--") + "m/s";
+        let time_Display = formatDate(point.forecastTime);
+        const isForecastPoint = point.pointType === "forecast"
+        if (isForecastPoint) {
+            //预报点需要增加预报时效
+            const time = new Date(time_Display).getTime() + point.timeNum * 60 * 60 * 1000
+            time_Display = dateToChar(time, 'yyyy-MM-dd HH:mi:ss')
+        }
+        const location_Display = point.lon + "°E | " + point.lat + "°N";
+        const pressure_Display = (point.pressure || "--") + "hPa"
+        return "<div id='popup-tcpoint' class='popup-tcpoint'>" +
+            "<b>台风名称：</b><code>" + snoname_Display + "</code><br/>" +
+            "<b>" + (isForecastPoint ? "预报时间" : "具体时间") + "：</b><code>" +
+            time_Display + "</code><br/>" +
+            (isForecastPoint ? "<b>预报机构：</b><code>" + (point.way || "--") + "</code><br/>" : "") +
+            "<b>中心位置：</b><code>" + location_Display + "</code><br/>" +
+            "<b>强度等级：</b><code>" + (point.tfdes ?? '-') + "</code><br/>" +
+            "<b>最大风力：</b><code>" + (point.lev || point.fl || "-") + '级，' + speed_Display + "</code><br/>" +
+            "<b>中心气压：</b><code>" + pressure_Display + "</code><br/>" +
+            "</div>";
+    }
+    //将已处理的时间格式，例如'20210908010000',转成yyyy-MM-dd HH:mi:ss'
+    const formatDate = (dateStr) => {
+        if (dateStr) {
+            const str = dateStr + "";
+            return str.substring(0, 4) + "-" + str.substring(4, 6) + "-" + str.substring(6, 8) + " " +
+                str.substring(8, 10) + ':' + str.substring(10, 12) + ':' + str.substring(12, 14);
+        } else {
+            return null;
+        }
+    }
+
+    // 功能：转换时间格式 datetime 为输入时间，format 为时间格式
+    const dateToChar = (datetime, format) => {
+        if (datetime === "" || datetime == null) {
+            return "";
+        } else {
+            format = format.replace(/hh24|HH24/g, 'HH');
+            const date = new Date(datetime);
+            const yyyy = date.getFullYear();
+            const MM = date.getMonth() + 1;
+            const dd = date.getDate();
+            const hh24 = date.getHours();
+            const mi = date.getMinutes();
+            const ss = date.getSeconds();
+            const s1 = format.replace(/yyyy|YYYY/g, yyyy);
+            const s2 = s1.replace(/MM/g, MM < 10 ? "0" + MM : MM);
+            const s3 = s2.replace(/dd|DD/g, dd < 10 ? "0" + dd : dd);
+            const s4 = s3.replace(/hh|HH/g, hh24 < 10 ? "0" + hh24 : hh24);
+            const s5 = s4.replace(/mm|mi|MI/g, mi < 10 ? "0" + mi : mi);
+            return s5.replace(/ss|SS/g, ss < 10 ? "0" + ss : ss);
+        }
+    }
 
     // 获取标签颜色
     const getLabelColor = (source) => {
