@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/node": "^20.14.11",
+    "element-plus": "^2.8.7",
     "ol": "^9.2.4",
     "ol-ext": "^4.0.21",
     "pinia": "^2.2.0",
