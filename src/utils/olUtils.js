@@ -1,15 +1,12 @@
 import GeoJSON from 'ol/format/GeoJSON';
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
-import {inject} from "vue";
-
-const map = inject('map')
 
 /**
  * 读取geo json 数据
  * @returns {*}
  */
-const readFeatures = (features) => {
+export const readFeatures = (features) => {
     return new GeoJSON().readFeatures(
         features, {
             dataProjection: "EPSG:4326",

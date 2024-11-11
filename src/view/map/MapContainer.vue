@@ -13,6 +13,8 @@ import MapLayerAreaRisk from "@/view/map/compoents/layer/MapLayerAreaRisk.vue";
 import MapLayerPressure from "@/view/map/compoents/layer/MapLayerPressure.vue";
 import MapLayerPointAggregation from "@/view/map/compoents/layer/MapLayerPointAggregation.vue";
 import ElementTyphoonBtn from "@/view/map/compoents/element-btn/ElementTyphoonBtn.vue";
+import ElementShpBtn from "@/view/map/compoents/element-btn/ElementShpBtn.vue";
+import MapLegend from "@/view/map/compoents/html-element/MapLegend.vue";
 
 const map = useMap()
 // 将 map 对象提供给子组件
@@ -44,6 +46,8 @@ provide('map', map);
     <ElementRadar/>
     <!--台风路径-->
     <ElementTyphoonBtn/>
+    <!--色斑图-->
+    <ElementShpBtn/>
   </div>
 </template>
 
