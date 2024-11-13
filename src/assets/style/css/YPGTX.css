@@ -152,15 +152,15 @@ body {
     from {
         transform: translateX(700px);
     }
-    
+
     70% {
         transform: translateX(-15px);
     }
-    
+
     85% {
         transform: translateX(15px);
     }
-    
+
     to {
         transform: translateX(0px);
     }
@@ -757,7 +757,7 @@ body {
       #right-4 {
         overflow: hidden;
       }
-      
+
       #left-1 {
         background-image: url(../img/YPGTX/kuang-1.png);
       }
@@ -1888,7 +1888,7 @@ body {
   #right-1-2-tablewrap-col1 .machineUnitText {
     padding-left: 25px;
     padding-top: 0;
-  } 
+  }
   #right-1-2-tablewrap-col1 .machineDatetimeText.title-icon:before,
   #right-1-2-tablewrap-col1 .machineUnitText.title-icon:before {
     margin-top: 0;
@@ -2446,7 +2446,7 @@ body {
   margin-top: 35px;
 } */
 
-/* 
+/*
 .YPGTX-layer .machineDatetimeText {
   font-size: 24px;
   margin-left: 20px;
@@ -2538,7 +2538,7 @@ body {
   top: 0;
   left: 0;
   width: 16px;
-  height: 16px;    
+  height: 16px;
   font-size: 24px;
 } */
 
@@ -3710,7 +3710,7 @@ right: 0;
     display: none;
 }
 
-/* .ol-popup#map-popup.map-popup-LikeMapPoint:after, 
+/* .ol-popup#map-popup.map-popup-LikeMapPoint:after,
 .ol-popup#map-popup.map-popup-LikeMapPoint:before{
   content: none;
 } */
@@ -4731,6 +4731,7 @@ right: 0;
     color: #fff;
     background-clip: content-box;
     padding: 0;
+    z-index: 9999;
 }
 
 .custom-legend-wrap>* {

@@ -1,5 +1,6 @@
 export default {
-    CENTER: [121.5, 31.355],
+    // CENTER: [121.5, 31.355],
+    CENTER: [114.4829, 30.6643],
     LAYER_Z_INDEX: {
         LIGHTNING: 20190718, //闪电
         RAIN: 5, //雨量色斑图

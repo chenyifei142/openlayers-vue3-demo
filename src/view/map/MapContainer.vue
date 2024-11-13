@@ -15,6 +15,7 @@ import MapLayerPointAggregation from "@/view/map/compoents/layer/MapLayerPointAg
 import ElementTyphoonBtn from "@/view/map/compoents/element-btn/ElementTyphoonBtn.vue";
 import ElementShpBtn from "@/view/map/compoents/element-btn/ElementShpBtn.vue";
 import MapLegend from "@/view/map/compoents/html-element/MapLegend.vue";
+import ColorSelectDrawer from "@/components/ColorSelectDrawer.vue";
 
 const map = useMap()
 // 将 map 对象提供给子组件
@@ -48,10 +49,16 @@ provide('map', map);
     <ElementTyphoonBtn/>
     <!--色斑图-->
     <ElementShpBtn/>
+    <!--图例-->
+    <div class="custom-legend-wrap" id="custom-legend-wrap" style="padding-bottom: 62px">
+      <MapLegend type="temp" init-active/>
+    </div>
+    <!--颜色选择-->
+    <ColorSelectDrawer/>
   </div>
 </template>
 
-<style>
+<style lang="scss">
 @import "@/assets/style/ol-ext.css";
 
 .map {

@@ -1,19 +1,25 @@
-import {defineStore} from "pinia";
-import {ref} from "vue";
-
+import { defineStore } from "pinia";
+import { ref } from "vue";
 
 export const useColorConfigStore = defineStore('colorConfig', () => {
 
+    const isColorChange = ref(false);
+
+    // 初始化 tempColorConfig，首先从 localStorage 获取配置，如果没有则使用默认配置
+
+    // 获取本地存储中的色卡配置
+    const getLocalStorageColorConfig = (type) => {
+        const colorList = JSON.parse(localStorage.getItem(type));
+        return colorList && colorList.length ? colorList : false;  // 返回 colorList 或空数组
+    };
 
     const tempColorConfig = ref({
         valueMinus: true,
-        startIndex: 2,
-        step: 3,
         valueKey: "TEM1H_Low",
         name: "aws_tem",
         label: "温度",
         unit: "℃",
-        colorConfig: [
+        colorConfig: getLocalStorageColorConfig('temp') || [
             {
                 "GT": "-24",
                 "LTE": "10",
@@ -31,75 +37,11 @@ export const useColorConfigStore = defineStore('colorConfig', () => {
                 "B": "206"
             },
             {
-                "GT": "11",
-                "LTE": "12",
-                "A": "255",
-                "R": "0",
-                "G": "12",
-                "B": "239"
-            },
-            {
-                "GT": "12",
-                "LTE": "13",
-                "A": "255",
-                "R": "8",
-                "G": "8",
-                "B": "255"
-            },
-            {
-                "GT": "13",
-                "LTE": "14",
-                "A": "255",
-                "R": "41",
-                "G": "40",
-                "B": "255"
-            },
-            {
-                "GT": "14",
-                "LTE": "15",
-                "A": "255",
-                "R": "66",
-                "G": "69",
-                "B": "255"
-            },
-            {
                 "GT": "15",
                 "LTE": "16",
                 "A": "255",
                 "R": "99",
                 "G": "101",
-                "B": "255"
-            },
-            {
-                "GT": "16",
-                "LTE": "17",
-                "A": "255",
-                "R": "132",
-                "G": "134",
-                "B": "255"
-            },
-            {
-                "GT": "17",
-                "LTE": "18",
-                "A": "255",
-                "R": "165",
-                "G": "162",
-                "B": "255"
-            },
-            {
-                "GT": "18",
-                "LTE": "19",
-                "A": "255",
-                "R": "198",
-                "G": "195",
-                "B": "255"
-            },
-            {
-                "GT": "19",
-                "LTE": "20",
-                "A": "255",
-                "R": "222",
-                "G": "223",
                 "B": "255"
             },
             {
@@ -111,75 +53,11 @@ export const useColorConfigStore = defineStore('colorConfig', () => {
                 "B": "252"
             },
             {
-                "GT": "21",
-                "LTE": "22",
-                "A": "255",
-                "R": "49",
-                "G": "195",
-                "B": "8"
-            },
-            {
-                "GT": "22",
-                "LTE": "23",
-                "A": "255",
-                "R": "82",
-                "G": "203",
-                "B": "8"
-            },
-            {
-                "GT": "23",
-                "LTE": "24",
-                "A": "255",
-                "R": "107",
-                "G": "211",
-                "B": "8"
-            },
-            {
-                "GT": "24",
-                "LTE": "25",
-                "A": "255",
-                "R": "140",
-                "G": "219",
-                "B": "0"
-            },
-            {
                 "GT": "25",
                 "LTE": "26",
                 "A": "255",
                 "R": "173",
                 "G": "231",
-                "B": "0"
-            },
-            {
-                "GT": "26",
-                "LTE": "27",
-                "A": "255",
-                "R": "206",
-                "G": "239",
-                "B": "0"
-            },
-            {
-                "GT": "27",
-                "LTE": "28",
-                "A": "255",
-                "R": "231",
-                "G": "247",
-                "B": "0"
-            },
-            {
-                "GT": "28",
-                "LTE": "29",
-                "A": "255",
-                "R": "255",
-                "G": "251",
-                "B": "0"
-            },
-            {
-                "GT": "29",
-                "LTE": "30",
-                "A": "255",
-                "R": "255",
-                "G": "219",
                 "B": "0"
             },
             {
@@ -191,75 +69,11 @@ export const useColorConfigStore = defineStore('colorConfig', () => {
                 "B": "0"
             },
             {
-                "GT": "31",
-                "LTE": "32",
-                "A": "255",
-                "R": "255",
-                "G": "154",
-                "B": "0"
-            },
-            {
-                "GT": "32",
-                "LTE": "33",
-                "A": "255",
-                "R": "255",
-                "G": "125",
-                "B": "0"
-            },
-            {
-                "GT": "33",
-                "LTE": "34",
-                "A": "255",
-                "R": "255",
-                "G": "93",
-                "B": "0"
-            },
-            {
-                "GT": "34",
-                "LTE": "35",
-                "A": "255",
-                "R": "255",
-                "G": "60",
-                "B": "0"
-            },
-            {
                 "GT": "35",
                 "LTE": "36",
                 "A": "255",
                 "R": "255",
                 "G": "28",
-                "B": "0"
-            },
-            {
-                "GT": "36",
-                "LTE": "37",
-                "A": "255",
-                "R": "255",
-                "G": "0",
-                "B": "0"
-            },
-            {
-                "GT": "37",
-                "LTE": "38",
-                "A": "255",
-                "R": "198",
-                "G": "0",
-                "B": "0"
-            },
-            {
-                "GT": "38",
-                "LTE": "39",
-                "A": "255",
-                "R": "165",
-                "G": "0",
-                "B": "0"
-            },
-            {
-                "GT": "39",
-                "LTE": "40",
-                "A": "255",
-                "R": "140",
-                "G": "0",
                 "B": "0"
             },
             {
@@ -271,14 +85,28 @@ export const useColorConfigStore = defineStore('colorConfig', () => {
                 "B": "0"
             }
         ]
-    })
+    });
 
+
+
+    // 获取指定类型的色卡配置
     const getColorConfig = (type) => {
+        return tempColorConfig.value; // 直接返回 tempColorConfig 的值
+    };
+
+    // 设置指定类型的色卡配置并更新到 localStorage
+    const setColorConfig = (type, colorList) => {
         if (type === 'temp') {
-            return tempColorConfig.value
+            tempColorConfig.value.colorConfig = colorList;
+            // 将更新后的 colorConfig 保存到 localStorage
+            localStorage.setItem('temp', JSON.stringify(tempColorConfig.value.colorConfig));
         }
-    }
+    };
 
+    // 设置是否发生了颜色变化的标志
+    const setColorChange = (flag) => {
+        isColorChange.value = flag;
+    };
 
-    return {getColorConfig};
-})
+    return { getColorConfig, setColorConfig, setColorChange, isColorChange };
+});

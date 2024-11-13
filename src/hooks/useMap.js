@@ -23,37 +23,37 @@ export const useMap = () => {
     const initMap = () => {
         map.value = new Map({
             layers: [
-                new TileLayer({
-                    source: new XYZ({
-                        url: 'http://wprd0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=7&x={x}&y={y}&z={z}',
-                        crossOrigin: "anonymous",
-                        tileLoadFunction: function (imageTile, src) {
-                            // 使用滤镜 将白色修改为深色
-                            const img = new Image();
-                            // img.crossOrigin = ''
-                            // 设置图片不从缓存取，从缓存取可能会出现跨域，导致加载失败
-                            img.setAttribute("crossOrigin", "anonymous");
-                            img.onload = function () {
-                                const canvas = document.createElement("canvas");
-                                const w = img.width;
-                                const h = img.height;
-                                canvas.width = w;
-                                canvas.height = h;
-                                const context = canvas.getContext("2d");
-                                context.filter = "grayscale(98%) invert(100%) sepia(20%) hue-rotate(180deg) saturate(1600%) brightness(80%) contrast(90%)";
-                                context.drawImage(img, 0, 0, w, h, 0, 0, w, h);
-                                imageTile.getImage().src = canvas.toDataURL("image/png");
-                            };
-                            img.src = src;
-                        }
-                    }),
-                    visible: true
-                })
+                // new TileLayer({
+                //     source: new XYZ({
+                //         url: 'http://wprd0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=7&x={x}&y={y}&z={z}',
+                //         crossOrigin: "anonymous",
+                //         tileLoadFunction: function (imageTile, src) {
+                //             // 使用滤镜 将白色修改为深色
+                //             const img = new Image();
+                //             // img.crossOrigin = ''
+                //             // 设置图片不从缓存取，从缓存取可能会出现跨域，导致加载失败
+                //             img.setAttribute("crossOrigin", "anonymous");
+                //             img.onload = function () {
+                //                 const canvas = document.createElement("canvas");
+                //                 const w = img.width;
+                //                 const h = img.height;
+                //                 canvas.width = w;
+                //                 canvas.height = h;
+                //                 const context = canvas.getContext("2d");
+                //                 context.filter = "grayscale(98%) invert(100%) sepia(20%) hue-rotate(180deg) saturate(1600%) brightness(80%) contrast(90%)";
+                //                 context.drawImage(img, 0, 0, w, h, 0, 0, w, h);
+                //                 imageTile.getImage().src = canvas.toDataURL("image/png");
+                //             };
+                //             img.src = src;
+                //         }
+                //     }),
+                //     visible: true
+                // })
             ],
             view: new View({
                 center: fromLonLat(mapConstants.CENTER), // 设置地图中心
-                // zoom: 9, // 初始缩放等级
-                zoom: 4, // 初始缩放等级
+                zoom: 9, // 初始缩放等级
+                // zoom: 4, // 初始缩放等级
                 projection: 'EPSG:3857', // 投影方式 默认为'EPSG：3857'
                 maxZoom: 18, // 最大缩放等级
                 minZoom: 4, // 最小缩放等级

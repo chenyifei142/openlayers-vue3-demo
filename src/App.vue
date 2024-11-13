@@ -38,4 +38,7 @@ import MapContainer from "./view/map/MapContainer.vue";
 .main-box {
   background: rgba(3, 205, 255, 0.12);
 }
+.el-overlay {
+  background-color: transparent;
+}
 </style>

@@ -3,7 +3,7 @@ import VectorLayer from "ol/layer/Vector";          // OpenLayers 矢量图层
 import VectorSource from "ol/source/Vector";        // OpenLayers 矢量数据源
 import stylesMap from "@/view/map/compoents/style/stylesMap.js"; // 自定义样式地图模块
 import {readFeatures} from '@/utils/olUtils.js';  // 读取矢量数据的工具方法
-import {inject} from "vue";
+import {inject, watch} from "vue";
 import {useLegendCfg} from "@/hooks/useLegendCfg.js";                       // Vue 的依赖注入方法
 
 /**
@@ -78,7 +78,13 @@ export const useShpLayer = (shpLayer) => {
         const {createMapStyleFunction} = useLegendCfg(type)
         // console.log(createMapStyleFunction(),"createMapStyleFunction")
         // 设置shpLayer样式
-        shpLayer.value?.setStyle(createMapStyleFunction());
+        watch(
+            createMapStyleFunction,
+            (newStyleFunction) => {
+                shpLayer.value?.setStyle(newStyleFunction);
+            },
+            {immediate: true}
+        );
     };
 
     // 返回管理 shpLayer 的方法
