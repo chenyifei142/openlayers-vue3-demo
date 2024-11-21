@@ -16,6 +16,7 @@ import ElementTyphoonBtn from "@/view/map/compoents/element-btn/ElementTyphoonBt
 import ElementShpBtn from "@/view/map/compoents/element-btn/ElementShpBtn.vue";
 import MapLegend from "@/view/map/compoents/html-element/MapLegend.vue";
 import ColorSelectDrawer from "@/components/ColorSelectDrawer.vue";
+import ElementWindBtn from "@/view/map/compoents/element-btn/ElementWindBtn.vue";
 
 const map = useMap()
 // 将 map 对象提供给子组件
@@ -47,6 +48,8 @@ provide('map', map);
     <ElementRadar/>
     <!--台风路径-->
     <ElementTyphoonBtn/>
+    <!--风场粒子-->
+    <ElementWindBtn/>
     <!--色斑图-->
     <ElementShpBtn/>
     <!--图例-->
