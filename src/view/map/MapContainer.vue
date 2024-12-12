@@ -49,7 +49,7 @@ provide('map', map);
     <!--台风路径-->
     <ElementTyphoonBtn/>
     <!--风场粒子-->
-    <ElementWindBtn/>
+<!--    <ElementWindBtn/>-->
     <!--色斑图-->
     <ElementShpBtn/>
     <!--图例-->

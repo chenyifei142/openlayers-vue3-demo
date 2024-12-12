@@ -52,7 +52,7 @@ export const useMap = () => {
             ],
             view: new View({
                 center: fromLonLat(mapConstants.CENTER), // 设置地图中心
-                zoom: 9, // 初始缩放等级
+                zoom: 4, // 初始缩放等级
                 // zoom: 4, // 初始缩放等级
                 projection: 'EPSG:3857', // 投影方式 默认为'EPSG：3857'
                 maxZoom: 18, // 最大缩放等级
