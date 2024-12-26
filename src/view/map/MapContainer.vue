@@ -17,6 +17,7 @@ import ElementShpBtn from "@/view/map/compoents/element-btn/ElementShpBtn.vue";
 import MapLegend from "@/view/map/compoents/html-element/MapLegend.vue";
 import ColorSelectDrawer from "@/components/ColorSelectDrawer.vue";
 import ElementWindBtn from "@/view/map/compoents/element-btn/ElementWindBtn.vue";
+import MapLayerDemonstrationZone from "@/view/map/compoents/layer/MapLayerDemonstrationZone.vue";
 
 const map = useMap()
 // 将 map 对象提供给子组件
@@ -36,6 +37,8 @@ provide('map', map);
     <MapLayerShanghaiDistrict/>
     <!--静安区风险填色图层-->
     <MapLayerAreaRisk/>
+    <!--示范区-->
+    <MapLayerDemonstrationZone/>
     <!--等压线图层-->
     <MapLayerPressure/>
     <!--点聚合图层-->
@@ -49,7 +52,7 @@ provide('map', map);
     <!--台风路径-->
     <ElementTyphoonBtn/>
     <!--风场粒子-->
-<!--    <ElementWindBtn/>-->
+    <!--    <ElementWindBtn/>-->
     <!--色斑图-->
     <ElementShpBtn/>
     <!--图例-->
